@@ -21,7 +21,7 @@ int main(void){
         case 1:
             float mi, km;
             #define MIK 1.60934 //miles to km conversion factor
-            printf("You chose conversions from miles to km\n\n");
+            printf("You chose conversions from miles to km\n");
             printf("How many miles would you like to convert?\n");
             scanf("%f", &mi);
 
@@ -33,7 +33,7 @@ int main(void){
        case 2:
             float lb, kg;
             #define LBKG 2.205 //pound to kg conversion factor
-            printf("You chose conversions from pounds to kg");
+            printf("You chose conversions from pounds to kg\n");
             printf("How many pounds would you like to convert?\n");
             scanf("%f", &lb);
 
@@ -45,7 +45,7 @@ int main(void){
        case 3:
             float f, r;
             #define FR 459.67 //pound to kg conversion factor
-            printf("You chose conversions from deg. F to deg. R");
+            printf("You chose conversions from deg. F to deg. R\n");
             printf("What is the deg. F you would like to convert?\n");
             scanf("%f", &f);
 
