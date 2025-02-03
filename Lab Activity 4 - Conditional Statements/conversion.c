@@ -29,7 +29,7 @@ int main(void){
 
             printf("%.2f miles in km is %.2f \n", mi, km);
             printf("Goodbye!");
-            break;
+            break; //if the break wasnt here. it would execute the code for all the other cases too if case 1 is true. 
        case 2:
             float lb, kg;
             #define LBKG 2.205 //pound to kg conversion factor
