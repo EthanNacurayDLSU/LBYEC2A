@@ -27,7 +27,7 @@ scanf("%d", &id8);
 dotid = ((id1*8)+(id2*7)+(id3*6)+(id4*5)+(id5*4)+(id6*3)+(id7*2)+(id8*1));
 x = (dotid/11);
 
-if (x < 16 && dotid%11 == 0)
+if (x < 16 && dotid%11 == 0) //and logical operator (i have to explain this now because this wasnt taught in class)
 {
     printf("Valid Student ID, You May Enter!");
 } else if (x >= 16 && dotid%11 == 0)
