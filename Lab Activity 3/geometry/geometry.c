@@ -3,7 +3,7 @@
 
 #define PI 3.1415929 // Constant
 
-float sphereVolume(float r);
+float sphereVolume(float r); //function prototypes, declares the existence of functions to main function
 float sphereSurface(float r);
 float cylinderVolume(float r, float h);
 float cylinderSurface(float r, float h);
@@ -20,7 +20,7 @@ int main(void){
     printf("=================================== RESULTS ===================================");
     
     printf("\n\nSphere Calculations :");
-    printf("\nThe volume of the sphere with radius %0.2f is equal to %0.2f cu. units.\n", radius, sphereVolume(radius));
+    printf("\nThe volume of the sphere with radius %0.2f is equal to %0.2f cu. units.\n", radius, sphereVolume(radius)/*variable radius to passed to sphereVolume function */);
     printf("The surface area of the sphere with radius %0.2f is equal to %0.2f cu. units.\n", radius, sphereSurface(radius));
     
     printf("\nCylinder Calculations : ");
@@ -35,7 +35,7 @@ int main(void){
 } 
 
 
-float sphereVolume(float r){
+float sphereVolume(float r /*this function takes the radius passed to it, and defines it as variable r*/){
     return (4.0*PI*pow(r,3)/3.0);
 }
 
