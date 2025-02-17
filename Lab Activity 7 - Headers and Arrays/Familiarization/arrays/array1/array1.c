@@ -1,17 +1,24 @@
 #include <stdio.h>
 
-int main ()
+int main()
 {
-    int arr1[5] = {1,2,3,4,5}, arr2[5];
+    int arr[5] = {0};
     int i;
-    
-    for(i=0; i<5; ++i){
-        arr2[i] = arr1[i]+1;
+
+    for (i = 0; i < 5; ++i)
+    {
+        printf("Enter Number %d : ", i + 1);
+        scanf("%d", &arr[i]);
     }
 
-    for (i=0; i<5; ++i)
+    for (i = 0; i < 5; ++i)
     {
-        printf("Number %d = %d\n", i+1, arr2[i]);
+        arr[i] = arr[i] * 10;
+    }
+
+    for (i = 0; i < 5; ++i)
+    {
+        printf("\nNumber %d = %d", i + 1, arr[i]);
     }
     return 0;
 }
