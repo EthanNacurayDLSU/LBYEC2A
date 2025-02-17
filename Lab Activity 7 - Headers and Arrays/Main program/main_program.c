@@ -20,11 +20,13 @@ int main ()
         printf("enter number %d : ", i+1);
         scanf("%d", &numbers[i]);
     }
-    
-    for (i=0; i<n; ++i)
+
+
+  //For debugging; prints the value of the array  
+   /*for (i=0; i<n; ++i)
     {
         printf("Number %d = %d\n", i+1, numbers[i]);
-    }
+    }*/
 
 
     printf("Sum = %.2f\n", sum(n, numbers));
