@@ -5,6 +5,10 @@ int main ()
 {
     printf("hello world\n");
     greet();
+
+    printf("sum of 4 and 6 is %d\n\n", sumoftwo(4,6));
+    
+    omedetou ();
     return 0;
 }
 
