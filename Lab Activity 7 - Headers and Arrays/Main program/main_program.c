@@ -7,7 +7,7 @@ int main ()
     int n, i; 
     float mean;
 
-    puts("how many numbers would you like to perform statistics on? (limit to 10 integers): ");
+    puts("How many numbers would you like to perform statistics on? (limit to 10 integers): ");
     scanf("%d", &n);
 
    if (n>10)
@@ -17,7 +17,7 @@ int main ()
     }
     
     for(i=0; i<n; ++i){
-        printf("enter number %d : ", i+1);
+        printf("enter Number %d : ", i+1);
         scanf("%d", &numbers[i]);
     }
 
@@ -29,7 +29,7 @@ int main ()
     }*/
 
 
-    printf("Sum = %.2f\n", sum(n, numbers));
+    printf("Sum = %.d\n", sum(n, numbers));
 
     mean = (sum(n, numbers)/n);   
     printf("Mean = %.2f\n", mean);
