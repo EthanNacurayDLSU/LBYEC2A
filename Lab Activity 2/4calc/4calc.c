@@ -18,7 +18,7 @@ numconfirm:
     printf("IS THIS CORRECT? Y/N \n");
     scanf(" %c", &confirm);
 
-    if (confirm == 'Y' || confirm == 'y') 
+    if (confirm == 'Y' || confirm == 'y')
     {
         radd = (num1 + num2 + num3 + num4);
         rave = (radd / 4);
@@ -29,7 +29,7 @@ numconfirm:
         printf("SUM OF ALL SQUARES : %.3f\n", rsquare);
         return 0;
     }
-    else if (confirm == 'N' || confirm == 'n')
+    else if (confirm == 'N' || confirm == 'n') // or operator
     {
         goto numselect;
     }

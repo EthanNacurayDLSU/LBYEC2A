@@ -9,7 +9,7 @@ int main()
         printf("\nenter your guess : ");
         scanf("%c", &guess);
 
-        if (toupper(guess) < actual)
+        if (toupper(guess) < actual) // toupper makes all char variables in it capitalized
         {
             printf("Your guess is lower than my letter\n");
         }
