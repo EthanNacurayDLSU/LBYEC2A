@@ -2,7 +2,7 @@
 #include <ctype.h> //to use toupper or tolower
 int main()
 {
-    char guess, actual = 'E';
+    char guess, actual = 'A';
 
     do
     {
