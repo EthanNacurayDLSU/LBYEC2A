@@ -16,10 +16,10 @@ int main()
         {
             printf ("Your guess is higher than my letter\n");
         }
-        getchar(); //clears buffer so scanf doesnt break
+       // getchar(); //clears buffer so scanf doesnt break
     } while (toupper(guess) != actual);
 
 printf ("YOU ARE CORRECT, MY LETTER IS %c", actual);
     
-    return 0;
+    return 0;w
 }
