@@ -27,7 +27,7 @@ int main ()
         }
     }
 
-    //debugging
+    //debugging5
    //printf("\n%d", even);
    //printf("\n%d", odd); 
 
