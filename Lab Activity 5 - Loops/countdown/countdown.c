@@ -8,10 +8,10 @@ int main()
     printf("how many seconds to blastoff?\n");
     scanf("%d", &i);
 
-    for (int t = i; t >= 0; t = (t - 1))
+    for (int t = i; t >= 0; t--)
     {
         printf("%d seconds left \n", t);
-        Sleep(1000); // sytem does nothing for 1000 miliseconds
+        Sleep(500); // sytem does nothing for 1000 miliseconds
     }
     puts("BLASTOFF!!!");
     return 0;
