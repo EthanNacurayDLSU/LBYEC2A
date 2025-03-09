@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <conio.h>
 
 int checkupper(char pass[100])
 {
-    int i;
+    int i = 0;
     do
     {
         if (isupper(pass[i]) == 0)
@@ -21,7 +22,7 @@ int checkupper(char pass[100])
 
 int main()
 {
-    char password[100], errors[100];
+    char password[100] = {'\0'}, errors[100] = {'\0'};
 
     printf("Enter your PASSWORD : ");
     int p = 0;
@@ -37,14 +38,22 @@ int main()
 
     if (strlen(password) <= 10)
     {
-        strcat(errors, "length (at least 10 characters),");
-    }
-    else if (checkupper(password) != 0)
-    {
-        strcat(errors, "uppercase letters,");
+        strcat(errors, "length (needs at least 10 characters),");
     }
 
-    printf("%s", errors);
+    if (checkupper(password) != 0)
+    {
+        strcat(errors, " uppercase letters,");
+    }
+
+    if (errors == '\0')
+    {
+        printf("No problems");
+    }
+    else
+    {
+        printf("\n%s", errors);
+    }
 
     return 0;
 }
