@@ -9,6 +9,7 @@
 int checkupper(char pass[100])
 {
     int i = 0;
+    int i = 0;
     do
     {
         if (isupper(pass[i]) == 0)
@@ -77,6 +78,7 @@ int checkspecial(char pass[100])
 
 int main()
 {
+    char password[100] = {'\0'}, errors[100] = {'\0'};
     char password[100] = {'\0'}, errors[100] = {'\0'};
 
     printf("Enter your PASSWORD : ");
