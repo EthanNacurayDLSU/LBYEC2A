@@ -2,6 +2,9 @@
 #include <string.h>
 #include <ctype.h> //for isdigit
 
+#define TRUE 1
+#define FALSE 0
+
 int checkupper(char pass[100])
 {
     int i = 0;
@@ -11,7 +14,7 @@ int checkupper(char pass[100])
         {
             i++;
         }
-        else /*if (isupper(pass[i] != 0))*/
+        else
         {
             return 1;
         }
@@ -31,6 +34,40 @@ int checklower(char pass[100])
         else 
         {
             return 1;
+        }
+    }
+    return 0;
+}
+
+int checkdigit(char pass[100])
+{
+    int i = 0;
+    while (i <= strlen(pass))
+    {
+        if (isdigit(pass[i]) == 0)
+        {
+            i++;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int checkspecial(char pass[100])
+{
+    int i = 0;
+    while (i <= strlen(pass))
+    {
+        if (isalpha(pass[i]) == 0 || isdigit(pass[i]) == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            i++;
         }
     }
     return 0;
