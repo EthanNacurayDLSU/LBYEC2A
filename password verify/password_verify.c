@@ -36,9 +36,11 @@ int main()
         p++;
     } while (password[p - 1] != '\r');
 
+    // getchar();
+
     if (strlen(password) <= 10)
     {
-        strcat(errors, "length (needs at least 10 characters),");
+        strcat(errors, "length(needs at least 10 characters),");
     }
 
     if (checkupper(password) != 0)
@@ -46,14 +48,21 @@ int main()
         strcat(errors, " uppercase letters,");
     }
 
-    if (errors == '\0')
-    {
-        printf("No problems");
-    }
-    else
+    // getchar();
+
+    printf("\n%s", password);
+
+    if (strlen(errors) > 0)
     {
         printf("\n%s", errors);
     }
+    else
+    {
+        strcat(errors, "No errors");
+        printf("\n%s", errors);
+    }
+
+    puts("no problems");
 
     return 0;
 }
