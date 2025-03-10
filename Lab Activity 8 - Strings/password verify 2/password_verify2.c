@@ -13,22 +13,13 @@
 int main()
 {
     char password[100] = {'\0'}, errors[100] = {'\0'}; //{'\0'} makes an empty string
-
+    do {
+    strcpy(errors, "");
+    strcpy(password, "");
     printf("Enter your PASSWORD : ");
     fgets(password, 100, stdin); //instead of 100, i can use sizeof()
+    getchar();
     password[strlen(password)-1] = '\0';
-    //int p = 0;
-    /*do // code copied from login.c
-    {
-        password[p] = getch(); //getch reads only one character from the user input
-        if (password[p] != '\r') //\r is a carraige return and means its the start of a new line (ascii 13, returns to start of current line and overwrites content)
-        {
-            printf("*");//
-        }
-        p++;
-    } while (password[p - 1] != '\r'); *///repeats the loop until the user has pressed the return key
-
-    printf("|%s|", password);
 
     if (strlen(password) < 10)
     {
@@ -40,29 +31,30 @@ int main()
         strcat(errors, " uppercase letter,");
     }
 
-  if(checklower(password) != TRUE)
+    if(checklower(password) != TRUE)
     {
         strcat(errors, " lowercase letter,");
     }
 
-   if(checkdigit(password) != TRUE)
-   {
+    if(checkdigit(password) != TRUE)
+    {
        strcat(errors, " digit,");
-   }
+    }
     
-   if(checkspecial(password) != TRUE)
-   {
+    if(checkspecial(password) != TRUE)
+    {
         strcat(errors, " special character");
-   }
+    }
 
-   if (strlen(errors) == 0)
-   {
-    //strcat(errors, "No Errors");
-    puts("\nPassword is Strong");
-   } else
-   {
-    printf("\nPassword is Weak. Missing : %s", errors); 
-   }
+    if (strlen(errors) == 0)
+    {
+    puts("\nPassword is Strong\n");
+   
+    } else
+    {
+    printf("\nPassword is Weak. Missing : %s\n", errors);
+    }
 
+    } while (strlen(errors) != 0); 
     return 0;
 }
