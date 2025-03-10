@@ -40,7 +40,7 @@ int checklower(char pass[100])
     return 1;
 }
 
-int checkdigit(char pass[100])
+/*int checkdigit(char pass[100])
 {
     int i = 0;
     do
@@ -55,9 +55,9 @@ int checkdigit(char pass[100])
         }
     } while (i <= strlen(pass));
     return 1;
-}
+}*/
 
-int checkspecial(char pass[100])
+/*int checkspecial(char pass[100])
 {
     int i = 0;
     do
@@ -72,7 +72,7 @@ int checkspecial(char pass[100])
         }
     } while (i <= strlen(pass));
     return 1;
-}
+}*/
 
 
 int main()

@@ -24,4 +24,6 @@ int main()
     course[strlen(course) - 1] = '\0';
     printf("Your course is %s!!!", course);
     return 0;
+
+    scanf("%s", &name); //when you use this, it stops at the first blank space
 }
