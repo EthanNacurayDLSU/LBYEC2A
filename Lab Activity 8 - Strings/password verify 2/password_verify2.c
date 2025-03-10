@@ -12,11 +12,13 @@
 
 int main()
 {
-    char password[100] = {'\0'}, errors[100] = {'\0'};
+    char password[100] = {'\0'}, errors[100] = {'\0'}; //{'\0'} makes an empty string
 
     printf("Enter your PASSWORD : ");
-    int p = 0;
-    do // i had to look this part up online
+    fgets(password, 100, stdin); //instead of 100, i can use sizeof()
+    password[strlen(password)-1] = '\0';
+    //int p = 0;
+    /*do // code copied from login.c
     {
         password[p] = getch(); //getch reads only one character from the user input
         if (password[p] != '\r') //\r is a carraige return and means its the start of a new line (ascii 13, returns to start of current line and overwrites content)
@@ -24,33 +26,33 @@ int main()
             printf("*");//
         }
         p++;
-    } while (password[p - 1] != '\r'); //repeats the loop until the user has pressed the return key
+    } while (password[p - 1] != '\r'); *///repeats the loop until the user has pressed the return key
 
-    if (strlen(password) <= 10)
+    printf("|%s|", password);
+
+    if (strlen(password) < 10)
     {
         strcat(errors, "length (needs at least 10 characters),");
-        puts("length");
     }
 
-    if (checkupper(password)!= TRUE)
+    if (checkupper(password) != TRUE)
     {
         strcat(errors, " uppercase letter,");
-        puts("upper");
     }
 
-  if(checklower(password)!= TRUE)
+  if(checklower(password) != TRUE)
     {
         strcat(errors, " lowercase letter,");
     }
 
-   if(checkdigit(password)!= TRUE)
+   if(checkdigit(password) != TRUE)
    {
        strcat(errors, " digit,");
    }
     
-   if(checkspecial(password)!= TRUE)
+   if(checkspecial(password) != TRUE)
    {
-        strcat(errors, " special character,");
+        strcat(errors, " special character");
    }
 
    if (strlen(errors) == 0)

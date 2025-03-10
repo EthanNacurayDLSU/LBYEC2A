@@ -8,9 +8,9 @@
 int checkupper(char pass[100])
 {
     int i = 0;
-    while (i <= strlen(pass))
+    while (i < strlen(pass))
     {
-        if (isupper(pass[i]) == 0)
+        if (isupper(pass[i]) == FALSE)
         {
             i++;
         }
@@ -25,9 +25,9 @@ int checkupper(char pass[100])
 int checklower(char pass[100])
 {
     int i = 0;
-    while (i <= strlen(pass))
+    while (i < strlen(pass))
     {
-        if (islower(pass[i]) == 0)
+        if (islower(pass[i]) == FALSE)
         {
             i++;
         }
@@ -42,9 +42,9 @@ int checklower(char pass[100])
 int checkdigit(char pass[100])
 {
     int i = 0;
-    while (i <= strlen(pass))
+    while (i < strlen(pass))
     {
-        if (isdigit(pass[i]) == 0)
+        if (isdigit(pass[i]) == FALSE)
         {
             i++;
         }
@@ -58,17 +58,17 @@ int checkdigit(char pass[100])
 
 int checkspecial(char pass[100])
 {
-    int i = 0;
-    while (i <= strlen(pass))
+int i = 0;
+while (i < strlen(pass))
+{
+    if ((isalpha(pass[i]) != FALSE) || (isdigit(pass[i]) != FALSE))
     {
-        if (isalpha(pass[i]) == 0 || isdigit(pass[i]) == 0)
-        {
-            return 1;
-        }
-        else
-        {
-            i++;
-        }
+        i++;
     }
-    return 0;
+    else
+    {
+        return 1;
+    }   
+}
+return 0;
 }
