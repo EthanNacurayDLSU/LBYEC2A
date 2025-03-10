@@ -16,15 +16,16 @@ int main()
 
     printf("Enter your PASSWORD : ");
     int p = 0;
-    do // i had to look this part up online
+    do // i looked this up online
     {
-        password[p] = getch();
-        if (password[p] != '\r') //\r is a carraige return and returns the cursor back by one space
+        password[p] = getch(); //getch reads only one character from the user input
+        if (password[p] != '\r') //\r is a carraige return and means its the start of a new line (ascii 13, returns to start of current line and overwrites content)
         {
-            printf("*");
+            printf("*");//when its not a new line, it replaces the typed line with an asterisk
         }
         p++;
-    } while (password[p - 1] != '\r');
+    } while (password[p - 1] != '\r'); //repeats the loop until the user has pressed the return key
+
 
     if (strcmp(username, user) == 0 || strcmp(password, passwd) == 0)
     {
