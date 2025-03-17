@@ -22,7 +22,12 @@ int main(){
     switch (menu)
     {
         case 1: //height and weight
-
+    float BMI, h, w;
+    printf("Please put your height in meters, and weight in kg.\n");
+    scanf("%f %f", &h, &w);
+    BMI = w/(h*h);
+    if BMI < 18.5 
+    printf("Your BMI is %.1f", BMI);
         break;
         case 2: //bmi value
 
