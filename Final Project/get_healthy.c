@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 int main(){
+    float bmi, h, w;
     //login/signup options
     printf ("======= Login/Signup =======\n"
             "(1) Login\n"
@@ -22,7 +23,6 @@ int main(){
     switch (menu)
     {
         case 1: //height and weight + BMI
-    float bmi, h, w;
     printf("Please put your height in meters, and weight in kg.\n");
     scanf("%f %f", &h, &w);
     bmi = w/(h*h);
