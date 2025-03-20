@@ -9,11 +9,11 @@ int main(){
     
     
     //menu system here
-    printf("========================\n"
-           "     MENU Options\n"
-           "========================\n"
+    printf("==========================\n"
+           "       MENU Options\n"
+           "==========================\n"
            "(1) Height and Weight + BMI\n"
-           "(2) BMI value\n"
+           "(2) Ideal BMI Comparison\n"
            "(3) Exercise/Diet Plan\n"
            "(4) Weekly Progress\n");
     printf("\nEnter choice: \n");
@@ -41,6 +41,12 @@ int main(){
 
         break;
         case 2: //bmi value
+
+    if (bmi == (w/(h*h)))
+        printf("What is your Ideal BMI?");
+    else
+        printf("Please input your BMI in Menu option No. 1.");
+    
     
         break;
         case 3: //exercise/diet plan
