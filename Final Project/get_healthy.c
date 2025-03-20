@@ -46,8 +46,7 @@ int main(){
         printf("What is your Ideal BMI?");
     else
         printf("Please input your BMI in Menu option No. 1.");
-    
-    
+        
         break;
         case 3: //exercise/diet plan
 
