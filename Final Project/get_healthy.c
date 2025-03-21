@@ -16,7 +16,7 @@ int main(){
            "(2) Ideal BMI Comparison\n"
            "(3) Exercise/Diet Plan\n"
            "(4) Weekly Progress\n");
-    printf("\nEnter choice: \n");
+    printf("\nEnter choice: ");
     int menu;
     scanf("%d", &menu);
 
@@ -40,7 +40,7 @@ int main(){
         printf("Your BMI is %.1f, You are Morbiusly a Beast.", bmi);
 
         break;
-        case 2: //bmi value
+    case 2: // bmi value and classification
 
     if (bmi == (w/(h*h)))
         printf("What is your Ideal BMI?");
@@ -48,10 +48,10 @@ int main(){
         printf("Please input your BMI in Menu option No. 1.");
         
         break;
-        case 3: //exercise/diet plan
+    case 3: // exercise/diet plan
 
         break;
-        case 4: //weekly progress
+    case 4: // weekly progress
 
         break;
     }
