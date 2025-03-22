@@ -50,8 +50,8 @@ int main()
         goto menu;
         break;
     case 2: // bmi value and classification, 7700 cal / kg
-        lcal = ((18.5 - bmi) * (h*h)) * 7700;
-        gcal = ((bmi - 24.9) * (h*h)) * 7700;
+        gcal = ((18.5 - bmi) * (h*h)) * 7700;
+        lcal = ((bmi - 24.9) * (h*h)) * 7700;
         if (bmi < 18.5)
         {
             printf("Your BMI is Less than Optimal; at your Current weight, you need to gain %.1f Calories.", gcal);
