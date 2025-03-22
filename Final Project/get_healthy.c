@@ -3,25 +3,10 @@
 
 #define TRUE 1;
 #define FALSE 0;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 2d0ef9a44dd4650d0336e795085c1f7d7372212e
-
-#define TRUE 1;
-#define FALSE 0;
-=======
->>>>>>> 8f1abc94e2d77b5b85d92ff439af243673d3c5c7
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 8f1abc94e2d77b5b85d92ff439af243673d3c5c7
->>>>>>> 2d0ef9a44dd4650d0336e795085c1f7d7372212e
 
 int main()
 {
-    float bmi, h, w;          // for bmi calculations
+    float bmi, h, w, lcal, gcal;          // for bmi calculations
     int planlen, curweek = 1; // length of exercise plan in weeks, curweek is current week of plan
 
     // login/signup options
@@ -61,9 +46,11 @@ int main()
             printf("Your BMI is %.1f, You are Morbiusly a Beast.", bmi);
 
         break;
-    case 2: // bmi value and classification
+    case 2: // bmi value and classification, 7700 cal / kg
+        lcal = 7700 * ((w / (h * h)) - 18.5);
+        gcal = 7700 * (24.9 + (w / (h * h)));
         if (bmi <18.5)
-            printf("Your BMI is Less than Optimal; You are Underweight and need to intake more Calories.");
+            printf("Your BMI is Less than Optimal; at your Current weight, you need to gain %.1f Calories.", gcal);
         else if (bmi >24.9)
             printf("Your BMI is Above what is Healthy; You are Overweight and need to intake less Calories.");
         else
