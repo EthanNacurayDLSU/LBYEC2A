@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include "bmiformula.h"
 
-#define TRUE 1;
-#define FALSE 0;
+#define TRUE 1
+#define FALSE 0
 
 int main()
 {
-    float bmi, h, w, lcal, gcal, loptimal, goptimal;          // for bmi calculations
-    int planlen, curweek = 1; // length of exercise plan in weeks, curweek is current week of plan
+    float bmi, h, w, lcal, gcal, loptimal, goptimal;  // for bmi calculations
+    int planlen = 8, curweek = 1; // length of exercise plan in weeks, curweek is current week of plan
     int overweight, underweight;
+    int weekprog[3][16] = {0};
 
     // login/signup options
     printf("======= Login/Signup =======\n"
@@ -16,15 +17,15 @@ int main()
            "(2) Signup\n"); //
 
     // menu system here
-    
-    menu:
+
+menu:
     printf("\n==========================\n"
            "       MENU Options\n"
            "==========================\n"
            "(1) Height and Weight + BMI\n"
            "(2) Ideal BMI Comparison\n"
            "(3) Exercise/Diet Plan\n"
-           "(4) Weekly Progress\n");
+           "(4) Weekly Progress");
     printf("\nEnter choice: ");
     int menu;
     scanf("%d", &menu);
@@ -68,53 +69,71 @@ int main()
             printf("%.1f Calories, %.1f kg.\n", lcal, loptimal);
             overweight = TRUE;
         }
-        else 
+        else
         {
-        printf("Your BMI is Healthy! Keep it up!\n"); // cant you just like display this yourself?
+            printf("Your BMI is Healthy! Keep it up!"); // cant you just like display this yourself?
         }
         goto menu;
         break;
-    /*case 3: // exercise/diet plan
+        /*case 3: // exercise/diet plan
 
-        break;
-    case 4: // weekly progress
-        int weekchoice;
-        printf("==========================\n"
-               "   Weekly Progress Menu\n"
-               "==========================\n"
-               "(1) Enter This Week's Progress\n"
-               "(2) See Weekly Progress Table\n");
+            break;
+        case 4: // weekly progress
+            int weekchoice;
 
-        printf("\nEnter choice: ");
-        scanf("%d", &weekchoice);
+        weeklyprogress:
+            printf("\n==========================\n"
+                   "   Weekly Progress Menu\n"
+                   "==========================\n"
+                   "(1) Enter This Week's Progress\n"
+                   "(2) See Weekly Progress Table\n"
+                   "(3) Return\n");
 
-        switch (weekchoice)
+            printf("\nEnter choice: ");
+            scanf("%d", &weekchoice);
+
+            switch (weekchoice)
+            {
+            case 1:                            // updating the progress of the week
+                float /*exertime,*/
+        foodcount; // exercise time and nugget count
+
+        printf("\n===== Week %d Progress Report =====", curweek);
+        if (/*overweight == TRUE*/ 1)
         {
-        case 1:                        // updating the progress of the week
-            float exertime, foodcount; // exercise time and nugget count
+            printf("\nEnter how many minutes you ran/walked/jogged/swam this week (%d) : ", curweek); // if trying to lose weight
+            scanf("%f", &weekprog[0][curweek]);
 
-            printf("\n===== Week %d Progress Report =====", curweek);
-            if (overweight == TRUE)
-            {
-                printf("\nEnter how many minutes you ran/walked/jogged/swam this week (%d) : ", curweek); // if trying to lose weight
-                scanf("%f", &exertime);
-            }
-            else if (underweight == TRUE)
-            {
-                printf("\nEnter how many [foods] did you eat this week? (%d) : ", curweek);
-                scanf("%f", &foodcount);
-            }
-        case 2: // see the weekly progress so far
-            printf("\n===== Week Progress Table =====");
-            for (int i = 0; i <= weekchoice, i++)
-            {
-                printf("|   Week %d   |", i);
-            }
+            goto weeklyprogress;
+        }
+        else if (underweight == TRUE)
+        {
+            printf("\nEnter how many [foods] did you eat this week? (%d) : ", curweek);
+            scanf("%f", &foodcount);
+        }
+        break;
+    case 2: // see the weekly progress so far
+        printf("\n===== Week Progress Table =====\n\n");
+        printf("|                        |");
+
+        for (int i = 1; i <= planlen; i++)
+        {
+            printf("|   Week %d   |", i);
         }
 
+        printf("\n| Calories Burned/Gained |");
+        for (int i = 1; i <= planlen; i++)
+        {
+            printf("|   %d   |", i);
+        }
         curweek++;
 
-        break;*/
+        break;
+    case 3:
+        goto menu;
+        break;
     }
-    return 0;
+    break;
+}
+return 0;
 }
