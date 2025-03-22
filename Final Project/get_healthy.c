@@ -5,24 +5,26 @@
 #define FALSE 0;
 <<<<<<< HEAD
 <<<<<<< HEAD
-=======
+    == == ==
+    =
 <<<<<<< HEAD
 >>>>>>> 2d0ef9a44dd4650d0336e795085c1f7d7372212e
 
 #define TRUE 1;
 #define FALSE 0;
-=======
+        == == == =
 >>>>>>> 8f1abc94e2d77b5b85d92ff439af243673d3c5c7
 <<<<<<< HEAD
-=======
-=======
+                     == == == =
+                                  == == == =
 >>>>>>> 8f1abc94e2d77b5b85d92ff439af243673d3c5c7
 >>>>>>> 2d0ef9a44dd4650d0336e795085c1f7d7372212e
 
-int main()
+                                               int main()
 {
     float bmi, h, w;          // for bmi calculations
     int planlen, curweek = 1; // length of exercise plan in weeks, curweek is current week of plan
+    int overweight, underweight;
 
     // login/signup options
     printf("======= Login/Signup =======\n"
@@ -62,12 +64,13 @@ int main()
 
         break;
     case 2: // bmi value and classification
-        if (bmi <18.5)
+        if (bmi < 18.5)
             printf("Your BMI is Less than Optimal; You are Underweight and need to intake more Calories.");
-        else if (bmi >24.9)
+        undeweight = TRUE;
+        else if (bmi > 24.9)
             printf("Your BMI is Above what is Healthy; You are Overweight and need to intake less Calories.");
-        else
-            printf("Your BMI is Healthy! Keep it up!"); // cant you just like display this yourself?
+        overweight = TRUE;
+        else printf("Your BMI is Healthy! Keep it up!"); // cant you just like display this yourself?
 
         break;
     case 3: // exercise/diet plan
