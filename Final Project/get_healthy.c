@@ -59,7 +59,7 @@ int main()
         }
         else if (bmi > 24.9)
         {
-            printf("Your BMI is Above what is Healthy; You are Overweight and need to intake less Calories.");
+            printf("Your BMI is More than what is Optimal; at your Current weight, you need to gain %.1f Calories.", lcal);
             overweight = TRUE;
         }
         else 
