@@ -3,9 +3,15 @@
 
 #define TRUE 1;
 #define FALSE 0;
+<<<<<<< HEAD
+<<<<<<< HEAD
 
 #define TRUE 1;
 #define FALSE 0;
+=======
+>>>>>>> 8f1abc94e2d77b5b85d92ff439af243673d3c5c7
+=======
+>>>>>>> 8f1abc94e2d77b5b85d92ff439af243673d3c5c7
 
 int main()
 {
