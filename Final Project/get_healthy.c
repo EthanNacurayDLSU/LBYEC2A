@@ -5,6 +5,7 @@
 #define FALSE 0
 
 int main()
+int main()
 {
     float bmi, h, w, lcal, gcal;  // for bmi calculations
     int planlen = 8, curweek = 1; // length of exercise plan in weeks, curweek is current week of plan
@@ -17,7 +18,9 @@ int main()
            "(2) Signup\n"); //
 
     // menu system here
-    printf("==========================\n"
+    
+    menu:
+    printf("\n==========================\n"
            "       MENU Options\n"
            "==========================\n"
            "(1) Height and Weight + BMI\n"
@@ -46,11 +49,11 @@ int main()
             printf("Your BMI is %.1f, You are Severely Obese.", bmi);
         else
             printf("Your BMI is %.1f, You are Morbiusly a Beast.", bmi);
-
+        goto menu;
         break;
     case 2: // bmi value and classification, 7700 cal / kg
-        lcal = 7700 * ((w / (h * h)) - 18.5);
-        gcal = 7700 * (24.9 + (w / (h * h)));
+        gcal = ((18.5 - bmi) * (h*h)) * 7700;
+        lcal = ((bmi - 24.9) * (h*h)) * 7700;
         if (bmi < 18.5)
         {
             printf("Your BMI is Less than Optimal; at your Current weight, you need to gain %.1f Calories.", gcal);
@@ -58,15 +61,16 @@ int main()
         }
         else if (bmi > 24.9)
         {
-            printf("Your BMI is Above what is Healthy; You are Overweight and need to intake less Calories.");
+            printf("Your BMI is More than what is Optimal; at your Current weight, you need to gain %.1f Calories.", lcal);
             overweight = TRUE;
         }
-        else
+        else 
         {
-            printf("Your BMI is Healthy! Keep it up!"); // cant you just like display this yourself?
+        printf("Your BMI is Healthy! Keep it up!"); // cant you just like display this yourself?
         }
+        goto menu;
         break;
-    case 3: // exercise/diet plan
+    /*case 3: // exercise/diet plan
 
         break;
     case 4: // weekly progress
