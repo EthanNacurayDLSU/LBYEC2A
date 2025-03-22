@@ -1,5 +1,8 @@
 #include <stdio.h>
 
+#define TRUE 1;
+#define FALSE 0;
+
 int main()
 {
     float bmi, h, w;          // for bmi calculations
@@ -54,13 +57,39 @@ int main()
 
         break;
     case 4: // weekly progress
+        int weekchoice;
+        printf("==========================\n"
+               "   Weekly Progress Menu\n"
+               "==========================\n"
+               "(1) Enter This Week's Progress\n"
+               "(2) See Weekly Progress Table\n");
 
-        // if trying to lose weight
-        float exertime, nugcount; // exercise time and nugget count
+        printf("\nEnter choice: ");
+        scanf("%d", &weekchoice);
 
-        printf("\n=== Week %d Progress Report ===", curweek);
-        printf("\nEnter how many minutes you ran/walked/jogged/swam this week (%d) : ", curweek);
-        scanf("%f", &exertime);
+        switch (weekchoice)
+        {
+        case 1:                        // updating the progress of the week
+            float exertime, foodcount; // exercise time and nugget count
+
+            printf("\n===== Week %d Progress Report =====", curweek);
+            if (overweight == TRUE)
+            {
+                printf("\nEnter how many minutes you ran/walked/jogged/swam this week (%d) : ", curweek); // if trying to lose weight
+                scanf("%f", &exertime);
+            }
+            else if (underweight == TRUE)
+            {
+                printf("\nEnter how many [foods] did you eat this week? (%d) : ", curweek);
+                scanf("%f", &foodcount);
+            }
+        case 2: // see the weekly progress so far
+            printf("\n===== Week Progress Table =====");
+            for (int i = 0; i <= weekchoice, i++)
+            {
+                printf("|   Week %d   |", i);
+            }
+        }
 
         curweek++;
 
