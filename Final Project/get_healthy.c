@@ -6,7 +6,7 @@
 
 int main()
 {
-    float bmi, h, w, lcal, gcal;          // for bmi calculations
+    float bmi, h, w, lcal, gcal, loptimal, goptimal;          // for bmi calculations
     int planlen, curweek = 1; // length of exercise plan in weeks, curweek is current week of plan
     int overweight, underweight;
 
@@ -36,35 +36,41 @@ int main()
         scanf("%f %f", &h, &w);
         bmi = w / (h * h);
         if (bmi < 18.5)
-            printf("Your BMI is %.1f, You are Underweight.", bmi);
+            printf("Your BMI is %.1f, You are Underweight.\n", bmi);
         else if (bmi < 24.9)
-            printf("Your BMI is %.1f, You are Healthy!", bmi);
+            printf("Your BMI is %.1f, You are Healthy!\n", bmi);
         else if (bmi < 29.9)
-            printf("Your BMI is %.1f, You are Overweight.", bmi);
+            printf("Your BMI is %.1f, You are Overweight.\n", bmi);
         else if (bmi < 34.9)
-            printf("Your BMI is %.1f, You are Obese.", bmi);
+            printf("Your BMI is %.1f, You are Obese.\n", bmi);
         else if (bmi < 39.9)
-            printf("Your BMI is %.1f, You are Severely Obese.", bmi);
+            printf("Your BMI is %.1f, You are Severely Obese.\n", bmi);
         else
-            printf("Your BMI is %.1f, You are Morbiusly a Beast.", bmi);
+            printf("Your BMI is %.1f, You are Morbiusly a Beast.\n", bmi);
         goto menu;
         break;
     case 2: // bmi value and classification, 7700 cal / kg
         gcal = ((18.5 - bmi) * (h*h)) * 7700;
         lcal = ((bmi - 24.9) * (h*h)) * 7700;
+        goptimal = (gcal / 7700);
+        loptimal = (lcal / 7700);;
         if (bmi < 18.5)
         {
-            printf("Your BMI is Less than Optimal; at your Current weight, you need to gain %.1f Calories.", gcal);
+            printf("Your BMI is Less than Optimal.\n");
+            printf("At your Current weight of %.1f, you need to gain:\n", w);
+            printf("%.1f Calories, %.1f kg.\n", gcal, goptimal);
             underweight = TRUE;
         }
         else if (bmi > 24.9)
         {
-            printf("Your BMI is More than what is Optimal; at your Current weight, you need to gain %.1f Calories.", lcal);
+            printf("Your BMI is Higher than what is Healthy.\n");
+            printf("At your Current weight of %.1f, you need to lose:\n", w);
+            printf("%.1f Calories, %.1f kg.\n", lcal, loptimal);
             overweight = TRUE;
         }
         else 
         {
-        printf("Your BMI is Healthy! Keep it up!"); // cant you just like display this yourself?
+        printf("Your BMI is Healthy! Keep it up!\n"); // cant you just like display this yourself?
         }
         goto menu;
         break;
