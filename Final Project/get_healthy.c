@@ -4,11 +4,20 @@
 #define TRUE 1;
 #define FALSE 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 2d0ef9a44dd4650d0336e795085c1f7d7372212e
 
 #define TRUE 1;
 #define FALSE 0;
 =======
 >>>>>>> 8f1abc94e2d77b5b85d92ff439af243673d3c5c7
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 8f1abc94e2d77b5b85d92ff439af243673d3c5c7
+>>>>>>> 2d0ef9a44dd4650d0336e795085c1f7d7372212e
 
 int main()
 {
