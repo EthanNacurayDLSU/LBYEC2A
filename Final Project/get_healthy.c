@@ -4,10 +4,11 @@
 #define TRUE 1;
 #define FALSE 0;
 
-int main()
+                                               int main()
 {
     float bmi, h, w, lcal, gcal;          // for bmi calculations
     int planlen, curweek = 1; // length of exercise plan in weeks, curweek is current week of plan
+    int overweight, underweight;
 
     // login/signup options
     printf("======= Login/Signup =======\n"
@@ -49,12 +50,13 @@ int main()
     case 2: // bmi value and classification, 7700 cal / kg
         lcal = 7700 * ((w / (h * h)) - 18.5);
         gcal = 7700 * (24.9 + (w / (h * h)));
-        if (bmi <18.5)
+        if (bmi < 18.5)
             printf("Your BMI is Less than Optimal; at your Current weight, you need to gain %.1f Calories.", gcal);
-        else if (bmi >24.9)
+        undeweight = TRUE;
+        else if (bmi > 24.9)
             printf("Your BMI is Above what is Healthy; You are Overweight and need to intake less Calories.");
-        else
-            printf("Your BMI is Healthy! Keep it up!"); // cant you just like display this yourself?
+        overweight = TRUE;
+        else printf("Your BMI is Healthy! Keep it up!"); // cant you just like display this yourself?
 
         break;
     case 3: // exercise/diet plan
