@@ -1,13 +1,30 @@
 #include <stdio.h>
 
-void displayPlanMenu() // Main Diet/Exercise Plan Menu
+#define TRUE 1
+#define FALSE 0
+
+void checkPlan(int underweight, int overweight, int *exdiechoice)
 {
-    printf("\n==========================\n"
-           "      PLAN MENU Options\n"
-           "==========================\n"
-           "(1) Exercise Plan\n"
-           "(2) Diet Plan\n"
-           "(3) Return to Menu\n");
+    if (underweight == TRUE && overweight == FALSE)
+    {
+        printf("You are underweight. Loading diet plan. . .\n");
+        *exdiechoice = 2; // Loads Diet Plan
+    }
+    else if (underweight == FALSE && overweight == TRUE)
+    {
+        printf("You are overweight. Loading exercise plan. . .\n");
+        *exdiechoice = 1; // Loads Exercise Plan
+    }
+    else if (underweight == FALSE && overweight == FALSE)
+    {
+        printf("You have not taken the BMI test. Please take the BMI test and return to this menu.");
+        *exdiechoice = 3; // Boots user back to menu, like the skipper he is
+    }
+    else
+    {
+        printf("Something has gone terribly wrong.");
+        *exdiechoice = 3; // Boots user back to menu, because we screwed up
+    }
 }
 
 void calcuExer(int exmchoice, float lcal, int planlen) // Calculations for Exercise Needed
