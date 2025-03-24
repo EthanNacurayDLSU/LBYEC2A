@@ -14,23 +14,35 @@ int main()
 
                                                                                     // login/signup variables
     char usernameinp[50], passwordinp[50];                                          // For username and password input
-    char userst[50] = "ergtfvdewerfg", passwordst[50] = "grfdsergrfd";              // For stored username and password. I put a bunch of gibberish for the initial. Not secure, I know.
+    char userst[50] = "/n", passwordst[50] = "/n";                                  // For stored username and password.
     int lschoice;                                                                   // For user's input in menu
 
                                                                                     // login/signup options
     while (1){
-    printf("======= Login/Signup =======\n"
-           "(1) Login\n"
-           "(2) Signup\n");
-    scanf("%d", &lschoice);
-    getchar();
+    printf("======= Login/Signup =======\n");
+    if (strcmp(userst, "/n") == 0 && strcmp(passwordst, "/n") == 0)
+    {
+        printf("No account found! Please sign up first.\n");
+        lschoice = 2;                                                               // Forces user to signup menu if no account found
+    }
+    else
+    {
+        printf(
+            "(1) Login\n"
+            "(2) Signup\n");
+        scanf("%d", &lschoice);
+        getchar();
+    }
 
                                                                                     // login/signup proper
     if (lschoice == 1){                                                             // User Login
         printf("Enter Username: ");
-        scanf("%s", usernameinp);
+        fgets(usernameinp, sizeof(usernameinp), stdin);
+        usernameinp[strcspn(usernameinp, "\n")] = 0;
+
         printf("Enter Password: ");
-        scanf("%s", passwordinp);
+        fgets(passwordinp, sizeof(passwordinp), stdin);
+        passwordinp[strcspn(passwordinp, "\n")] = 0;
 
         if (strcmp(usernameinp, userst) == 0 && strcmp(passwordinp, passwordst) == 0)
         {
@@ -42,25 +54,29 @@ int main()
             printf("Invalid credentials. Returning to Menu. . .\n");
             continue;                                                               // Return to login menu if input credentials do not match
         }
-    }
+        }
     else if (lschoice == 2){                                                        // User Signup
-        printf("Welcome to Get Healthy!\n Please enter your chosen Username: ");
-        scanf("%s", usernameinp);
+        printf("Welcome to Get Healthy!\nPlease enter your chosen Username: ");
+
+        fgets(usernameinp, sizeof(usernameinp), stdin);
+        usernameinp[strcspn(usernameinp, "\n")] = 0;
+
         printf("Please enter your chosen Password: ");
-        scanf("%s", passwordinp);
+        fgets(passwordinp, sizeof(passwordinp), stdin);
+        passwordinp[strcspn(passwordinp, "\n")] = 0;
 
         strcpy(userst, usernameinp);                                                // Copy new username to storage
         strcpy(passwordst, passwordinp);                                            // Copy new password to storage
         printf("Signup was successful! Please login with your new account!\n");
         continue;                                                                   // Go back to the login menu so user can login again
-    }
+        }
     else {
         printf("Invalid choice. Please try again.\n");
         continue;                                                                   // Return to login menu so user can try again
+        }
     }
 
     /* Note that signing up in this case would overwrite the previous user. I think we could use arrays to store multiple users but that's beyond my forte right now.*/
-
                                                                                     // menu system here
 menu:
     printf("\n==========================\n"
@@ -123,7 +139,7 @@ menu:
         else
         {
             printf("\n==========================\n"                                 // Nested switch for choosing what type of plan
-                   "      PLAN MENU Options\n"
+                   "      PLAN MENU Options\n"                                      // Also a submenu
                    "==========================\n"
                    "(1) Exercise Plan\n"
                    "(2) Diet Plan\n");
