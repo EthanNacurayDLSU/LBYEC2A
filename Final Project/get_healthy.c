@@ -17,7 +17,16 @@ int main()
     char userst[50] = "/n", passwordst[50] = "/n";                                  // For stored username and password.
     int lschoice;                                                                   // For user's input in menu
 
-                                                                                    // login/signup options
+                                                                                    // ASCII Text LOGO
+    puts("\n\n\n");
+    puts("  ____      _     _   _            _ _   _           _ ");
+    puts(" / ___| ___| |_  | | | | ___  __ _| | |_| |__  _   _| |");
+    puts("| |  _ / _ \\ __| | |_| |/ _ \\/ _` | | __| '_ \\| | | | |");
+    puts("| |_| |  __/ |_  |  _  |  __/ (_| | | |_| | | | |_| |_|");
+    puts(" \\____|\\___|\\__| |_| |_|\\___|\\__,_|_|\\__|_| |_|\\__, (_)");
+    puts("                                               |___/   ");
+
+    // login/signup options
     while (1){
     printf("======= Login/Signup =======\n");
     if (strcmp(userst, "/n") == 0 && strcmp(passwordst, "/n") == 0)
