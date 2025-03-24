@@ -2,6 +2,7 @@
 #include <string.h>
 #include "bmiformula.h"
 #include "weekly_prog.h"
+#include "exdie_plan.h"
 
 #define TRUE 1
 #define FALSE 0
@@ -96,70 +97,150 @@ int main()
 
     // menu system here
 
-    int menu;
+    int menu = 0;
 menu:
-    main_menu(menu);
+
+    main_menu(&menu);
 
     switch (menu)
     {
     case 1: // height and weight + BMI
-        printf("Please put your height in meters, and weight in kg.\n");
-        scanf("%f %f", &h, &w);
-        bmi = w / (h * h);
-        if (bmi < 18.5)
-            printf("Your BMI is %.1f, You are Underweight.\n", bmi);
-        else if (bmi < 24.9)
-            printf("Your BMI is %.1f, You are Healthy!\n", bmi);
-        else if (bmi < 29.9)
-            printf("Your BMI is %.1f, You are Overweight.\n", bmi);
-        else if (bmi < 34.9)
-            printf("Your BMI is %.1f, You are Obese.\n", bmi);
-        else if (bmi < 39.9)
-            printf("Your BMI is %.1f, You are Severely Obese.\n", bmi);
-        else
-            printf("Your BMI is %.1f, You are Morbiusly a Beast.\n", bmi);
-        goto menu;
+        heightweight(&h, &w, &bmi);
+
+        getchar();
+        main_menu(&menu);
         break;
     case 2: // bmi value and classification, 7700 cal / kg
-        gcal = ((18.5 - bmi) * (h * h)) * 7700;
-        lcal = ((bmi - 24.9) * (h * h)) * 7700;
-        goptimal = (gcal / 7700);
-        loptimal = (lcal / 7700);
-        ;
-        if (bmi < 18.5)
+
+        bmiclass(&h, &w, &bmi, &gcal, &lcal, &goptimal, &loptimal, &underweight, &overweight);
+
+        getchar();
+        main_menu(&menu);
+        break;
+    case 3: // exercise/diet plan /*
+        if (!(bmi < 18.5) && !(bmi > 24.9))
         {
-            printf("Your BMI is Less than Optimal.\n");
-            printf("At your Current weight of %.1f, you need to gain:\n", w);
-            printf("%.1f Calories, %.1f kg.\n", gcal, goptimal);
-            underweight = TRUE;
+            printf("Since you're already healthy, just maintain your current lifestyle!"); // Basically if user is already healthy, then no exercise or diet plan is needed.
+            break;
         }
-        else if (bmi > 24.9)
-        {
-            printf("Your BMI is Higher than what is Healthy.\n");
-            printf("At your Current weight of %.1f, you need to lose:\n", w);
-            printf("%.1f Calories, %.1f kg.\n", lcal, loptimal);
-            overweight = TRUE;
-        }
+
         else
         {
-            printf("Your BMI is Healthy! Keep it up!");
+            displayExdieMenu(); // Function Call [exdie_plan] : Prints out Initial Plan Menu
+            int xdplan;
+            printf("\nEnter choice: ");
+            scanf("%d", &xdplan);
+
+            switch (xdplan)
+            {
+            case 1:             // Exercise Plan
+                if (bmi < 18.5) // Prevents exercise plan if underweight
+                {
+                    printf("You are already underweight! Please reconsider doing an exercise plan.");
+                }
+                else
+                {
+                    displayExerMenu(); // Function Call [exdie_plan] : Prints out Exercise Plan Menu
+                    int actplan;
+                    printf("\nEnter choice: ");
+                    scanf("%d", &actplan);
+
+                    float hewalks, hejogs, heruns, heswims, minwalks, minjogs, minruns, minswims, hourwalk = 350, hourjog = 450, hourrun = 600, hourswim = 500, // Variables for calculations.
+                        loseweek = lcal / planlen;                                                                                                              // Calculates hours needed to lose per week
+
+                    switch (actplan)
+                    {
+                    case 1:
+                        hewalks = lcal / (planlen * hourwalk);                                                                                 // Calculates hours needed to walk per week
+                        minwalks = (hewalks * 60);                                                                                             // Converts hours to minutes
+                        printf("You need to lose %.1f calories, which means you need to lose around %.1f calories per week.", lcal, loseweek); // Make function call for this
+                        printf("Consider aiming to walk for at least %.1f minutes this week", minwalks);
+                        break;
+                    case 2:
+                        hejogs = lcal / (planlen * hourjog);
+                        minjogs = (hejogs * 60);
+                        printf("You need to lose %.1f calories, which means you need to lose around %.1f calories per week.", lcal, loseweek);
+                        printf("Consider aiming to jog for at least %.1f minutes this week", minjogs);
+                        break;
+                    case 3:
+                        heruns = lcal / (planlen * hourrun);
+                        minruns = (heruns * 60);
+                        printf("You need to lose %.1f calories, which means you need to lose around %.1f calories per week.", lcal, loseweek);
+                        printf("Consider aiming to run for at least %.1f minutes this week", minruns);
+                        break;
+                    case 4:
+                        heswims = lcal / (planlen * hourswim);
+                        minruns = (heswims * 60);
+                        printf("You need to lose %.1f calories, which means you need to lose around %.1f calories per week.", lcal, loseweek);
+                        printf("Consider aiming to swim for at least %.1f minutes this week", minswims);
+                        break;
+                    default:
+                        printf("Invalid option. Please try again.\n");
+                        break;
+                    }
+                }
+                break;
+            case 2:             // Diet Plan
+                if (bmi > 24.9) // Prevents diet plan if overweight
+                {
+                    printf("You are already overweight! Please reconsider doing a diet plan.");
+                }
+                else
+                {
+                    displayDietMenu(); // Function Call [exdie_plan] : Prints out Diet Plan Menu
+                    int dtplan;
+                    printf("\nEnter choice: ");
+                    scanf("%d", &dtplan);
+
+                    float onenugget = 302, onefish = 132, onerice = 130, onebroccoli = 34, servingsperweek;
+                    float gainweek = gcal / planlen;
+
+                    switch (dtplan)
+                    {
+                    case 1:
+                        servingsperweek = gainweek / onenugget;
+                        printf("You need to gain %.1f calories, which means you need to gain around %.1f calories per week.", gcal, gainweek); // Make function call for this
+                        printf("Consider aiming to eat at least %.1f servings of nuggets this week", servingsperweek);
+                        break;
+                    case 2:
+                        servingsperweek = gainweek / onefish;
+                        printf("You need to gain %.1f calories, which means you need to gain around %.1f calories per week.", gcal, gainweek);
+                        printf("Consider aiming to eat at least %.1f servings of tuna this week", servingsperweek);
+                        break;
+                    case 3:
+                        servingsperweek = gainweek / onerice;
+                        printf("You need to gain %.1f calories, which means you need to gain around %.1f calories per week.", gcal, gainweek);
+                        printf("Consider aiming to eat at least %.1f servings of rice this week", servingsperweek);
+                        break;
+                    case 4:
+                        servingsperweek = gainweek / onebroccoli;
+                        printf("You need to gain %.1f calories, which means you need to gain around %.1f calories per week.", gcal, gainweek);
+                        printf("Consider aiming to eat at least %.1f servings of broccoli this week", servingsperweek);
+                        break;
+                    default:
+                        printf("Invalid option. Please try again.\n");
+                        break;
+                    }
+                }
+
+                break;
+            default:
+                printf("Invalid option. Please try again.\n"); /* Don't know how to make this loop back lol */
+                break;
+            }
+            */
+                break;
+        case 4: // weekly progress
+            // printf("beforefunc :  %d\n", curweek);
+            weekly_prog_menu(planlen, &curweek, underweight, overweight, weekprog);
+            // printf("afterfunc :  %d\n", curweek);
+            break; // end of main menu switch case
         }
-        goto menu; // returns back to the menu using a goto function
-        break;
-    case 3: // exercise/diet plan
-
-        break;
-
-    case 4: // weekly progress
-        // printf("beforefunc :  %d\n", curweek);
-        weekly_prog_menu(planlen, &curweek, underweight, overweight, weekprog);
-        // printf("afterfunc :  %d\n", curweek);
-        break; // end of main menu switch case
     }
     return 0;
 }
 
-void main_menu(int menu)
+void main_menu(int *ptrmenu)
 {
     printf("\n==========================\n"
            "       MENU Options\n"
@@ -169,5 +250,5 @@ void main_menu(int menu)
            "(3) Exercise/Diet Plan\n"
            "(4) Weekly Progress");
     printf("\nEnter choice: ");
-    scanf("%d", &menu);
+    scanf("%d", &(*ptrmenu));
 }
