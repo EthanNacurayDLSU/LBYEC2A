@@ -121,7 +121,7 @@ menu:
         while (1)
         {
             int exdiechoice;
-            printf("\nExercise/Diet Plan Menu. . .\n");
+            printf("\nLoading Exercise/Diet Plan Menu. . .\n");
             displayPlanMenu(); // Function call for Initial ExDie Plan Menu
             printf("\n>> ");
             scanf("%d", &exdiechoice);
