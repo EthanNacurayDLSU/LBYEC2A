@@ -16,12 +16,12 @@ int main()
     int weekprog[3][16] = {0};    // two dimensional array to store the weekly progress data.
     int planlen = 8, curweek = 1; // length of exercise plan in weeks, curweek is current week of plan
 
-                                                                                    // login/signup variables
-    char usernameinp[50], passwordinp[50];                                          // For username and password input
-    char userst[50] = "/n", passwordst[50] = "/n";                                  // For stored username and password.
-    int lschoice;                                                                   // For user's input in menu
+    // login/signup variables
+    char usernameinp[50], passwordinp[50];         // For username and password input
+    char userst[50] = "/n", passwordst[50] = "/n"; // For stored username and password.
+    int lschoice;                                  // For user's input in menu
 
-                                                                                    // ASCII Text LOGO
+    // ASCII Text LOGO
     puts("\n\n\n");
     puts("  ____      _     _   _            _ _   _           _ ");
     puts(" / ___| ___| |_  | | | | ___  __ _| | |_| |__  _   _| |");
@@ -31,31 +31,33 @@ int main()
     puts("                                               |___/   ");
 
     // login/signup options
-    while (1){
-    printf("======= Login/Signup =======\n");
-    if (strcmp(userst, "/n") == 0 && strcmp(passwordst, "/n") == 0)
+    while (1)
     {
-        printf("No account found! Please sign up first.\n");
-        lschoice = 2;                                                               // Forces user to signup menu if no account found
-    }
-    else
-    {
-        printf(
-            "(1) Login\n"
-            "(2) Signup\n");
-        scanf("%d", &lschoice);
-        getchar();
-    }
+        printf("======= Login/Signup =======\n");
+        if (strcmp(userst, "/n") == 0 && strcmp(passwordst, "/n") == 0)
+        {
+            printf("No account found! Please sign up first.\n");
+            lschoice = 2; // Forces user to signup menu if no account found
+        }
+        else
+        {
+            printf(
+                "(1) Login\n"
+                "(2) Signup\n");
+            scanf("%d", &lschoice);
+            getchar();
+        }
 
-                                                                                    // login/signup proper
-    if (lschoice == 1){                                                             // User Login
-        printf("Enter Username: ");
-        fgets(usernameinp, sizeof(usernameinp), stdin);
-        usernameinp[strcspn(usernameinp, "\n")] = 0;
+        // login/signup proper
+        if (lschoice == 1)
+        { // User Login
+            printf("Enter Username: ");
+            fgets(usernameinp, sizeof(usernameinp), stdin);
+            usernameinp[strcspn(usernameinp, "\n")] = 0;
 
-        printf("Enter Password: ");
-        fgets(passwordinp, sizeof(passwordinp), stdin);
-        passwordinp[strcspn(passwordinp, "\n")] = 0;
+            printf("Enter Password: ");
+            fgets(passwordinp, sizeof(passwordinp), stdin);
+            passwordinp[strcspn(passwordinp, "\n")] = 0;
 
             if (strcmp(usernameinp, userst) == 0 && strcmp(passwordinp, passwordst) == 0)
             {
@@ -68,30 +70,32 @@ int main()
                 continue; // Return to login menu if input credentials do not match
             }
         }
+
+        else if (lschoice == 2)
+        { // User Signup
+            printf("Welcome to Get Healthy!\nPlease enter your chosen Username: ");
+
+            fgets(usernameinp, sizeof(usernameinp), stdin);
+            usernameinp[strcspn(usernameinp, "\n")] = 0;
+
+            printf("Please enter your chosen Password: ");
+            fgets(passwordinp, sizeof(passwordinp), stdin);
+            passwordinp[strcspn(passwordinp, "\n")] = 0;
+
+            strcpy(userst, usernameinp);     // Copy new username to storage
+            strcpy(passwordst, passwordinp); // Copy new password to storage
+            printf("Signup was successful! Please login with your new account!\n");
+            continue; // Go back to the login menu so user can login again
         }
-    else if (lschoice == 2){                                                        // User Signup
-        printf("Welcome to Get Healthy!\nPlease enter your chosen Username: ");
-
-        fgets(usernameinp, sizeof(usernameinp), stdin);
-        usernameinp[strcspn(usernameinp, "\n")] = 0;
-
-        printf("Please enter your chosen Password: ");
-        fgets(passwordinp, sizeof(passwordinp), stdin);
-        passwordinp[strcspn(passwordinp, "\n")] = 0;
-
-        strcpy(userst, usernameinp);                                                // Copy new username to storage
-        strcpy(passwordst, passwordinp);                                            // Copy new password to storage
-        printf("Signup was successful! Please login with your new account!\n");
-        continue;                                                                   // Go back to the login menu so user can login again
-        }
-    else {
-        printf("Invalid choice. Please try again.\n");
-        continue;                                                                   // Return to login menu so user can try again
+        else
+        {
+            printf("Invalid choice. Please try again.\n");
+            continue; // Return to login menu so user can try again
         }
     }
 
     /* Note that signing up in this case would overwrite the previous user. I think we could use arrays to store multiple users but that's beyond my forte right now.*/
-                                                                                    // menu system here
+    // menu system here
 menu:
     printf("\n==========================\n"
            "       MENU Options\n"
@@ -155,9 +159,9 @@ menu:
         break;
 
     case 4: // weekly progress
-        //printf("beforefunc :  %d\n", curweek);
+        // printf("beforefunc :  %d\n", curweek);
         weekly_prog_menu(planlen, &curweek, underweight, overweight, weekprog);
-       //printf("afterfunc :  %d\n", curweek);
+        // printf("afterfunc :  %d\n", curweek);
         break; // end of main menu switch case
     }
     return 0;
