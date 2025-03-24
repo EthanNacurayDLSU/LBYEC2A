@@ -6,7 +6,7 @@
 #define TRUE 1
 #define FALSE 0
 
-// void weekly_prog_menu();
+void main_menu();
 
 int main()
 {
@@ -94,19 +94,11 @@ int main()
         }
     }
 
-    /* Note that signing up in this case would overwrite the previous user. I think we could use arrays to store multiple users but that's beyond my forte right now.*/
     // menu system here
-menu:
-    printf("\n==========================\n"
-           "       MENU Options\n"
-           "==========================\n"
-           "(1) Height and Weight + BMI\n"
-           "(2) Ideal BMI Comparison\n"
-           "(3) Exercise/Diet Plan\n"
-           "(4) Weekly Progress");
-    printf("\nEnter choice: ");
+
     int menu;
-    scanf("%d", &menu);
+menu:
+    main_menu(menu);
 
     switch (menu)
     {
@@ -165,4 +157,17 @@ menu:
         break; // end of main menu switch case
     }
     return 0;
+}
+
+void main_menu(int menu)
+{
+    printf("\n==========================\n"
+           "       MENU Options\n"
+           "==========================\n"
+           "(1) Height and Weight + BMI\n"
+           "(2) Ideal BMI Comparison\n"
+           "(3) Exercise/Diet Plan\n"
+           "(4) Weekly Progress");
+    printf("\nEnter choice: ");
+    scanf("%d", &menu);
 }
