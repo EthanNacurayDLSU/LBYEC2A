@@ -10,7 +10,7 @@ int main()
     float bmi, h, w, lcal, gcal, loptimal, goptimal; // for bmi calculations
     int planlen = 8, curweek = 1;                    // length of exercise plan in weeks, curweek is current week of plan
     int overweight, underweight;
-    int weekprog[3][16] = {0};
+    int weekprog[3][16] = {0}; // two dimensional array to store the weekly progress data.
 
     // login/signup variables
     char usernameinp[50], passwordinp[50];                             // For username and password input
@@ -128,10 +128,11 @@ int main()
         case 3: // exercise/diet plan
 
             break;
+
         case 4: // weekly progress
             int weekchoice;
-
         weeklyprogress:
+            printf("USER %s's Diet Plan Program", userst);
             printf("\n==========================\n"
                    "   Weekly Progress Menu\n"
                    "==========================\n"
@@ -179,10 +180,11 @@ int main()
 
                 break;
             case 3:
-                goto menu;
+                goto menu; // option to return to the menu
                 break;
             }
-            break;
+            break; // end of main menu switch case
         }
         return 0;
     }
+}
