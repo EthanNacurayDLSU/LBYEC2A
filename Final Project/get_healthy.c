@@ -14,9 +14,9 @@ int main()
 {
     float bmi = 0, h = 0, w = 0, lcal = 0, gcal = 0, loptimal = 0, goptimal = 0; // for bmi calculations
 
-    int overweight, underweight;
-    int weekprog[3][16] = {0};    // two dimensional array to store the weekly progress data.
-    int planlen = 8, curweek = 1; // length of exercise plan in weeks, curweek is current week of plan
+    int overweight = FALSE, underweight = FALSE; // This needs to stay.
+    int weekprog[3][16] = {0};                   // two dimensional array to store the weekly progress data.
+    int planlen = 8, curweek = 1;                // length of exercise plan in weeks, curweek is current week of plan
 
     // login/signup variables
     char usernameinp[50], passwordinp[50];         // For username and password input
@@ -130,16 +130,22 @@ menu:
             while (1)
             {
                 int exdiechoice = 4;
+                float servingsweek = 0, gainweek = 0.0, hrsneed = 0, minsneed = 0, loseweek = 0.0;
+                int exmchoice = 0, dtchoice = 0;
+                char *thatstring = NULL;
+
                 printf("\nLoading Exercise/Diet Plan Menu. . .\n");
                 checkPlan(underweight, overweight, &exdiechoice); // Function call for Initial ExDie Plan Check
 
                 switch (exdiechoice)
                 {
-                case 1:                               // Exercise Plan
-                    exercisePlan(bmi, lcal, planlen); // Function call for Exercise Plan Menu
-                    break;                            // Go back to menu after
-                case 2:                               // Diet Plan
-                    dietPlan(bmi, lcal, planlen);     // Function call for Exercise Plan Menu
+                case 1:                                                                                        // Exercise Plan
+                    exercisePlan(bmi, lcal, planlen, &exmchoice, &hrsneed, &minsneed, &loseweek, &thatstring); // Function call for Exercise Plan Menu
+                    // printf("DEBUG: servingsweek:%f gainweek:%f hrsneed:%f minsneed:%f loseweek:%f exmchoice:%d dtchoice:%d thatstring:%s", servingsweek, gainweek, hrsneed, minsneed, loseweek, exmchoice, dtchoice, thatstring);
+                    break;                                                                          // Go back to menu after
+                case 2:                                                                             // Diet Plan
+                    dietPlan(bmi, gcal, planlen, &dtchoice, &servingsweek, &gainweek, &thatstring); // Function call for Exercise Plan Menu
+                    // printf("DEBUG: servingsweek:%f gainweek:%f hrsneed:%f minsneed:%f loseweek:%f exmchoice:%d dtchoice:%d thatstring:%s", servingsweek, gainweek, hrsneed, minsneed, loseweek, exmchoice, dtchoice, thatstring);
                     break;
                 case 3: // Go back to MAIN MENU
                     printf("Returning to the main menu...\n");
@@ -151,6 +157,7 @@ menu:
                 }
                 break;
             }
+            break;
 
         case 4: // weekly progress
             // printf("beforefunc :  %d\n", curweek);
