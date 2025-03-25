@@ -33,7 +33,7 @@ void weekly_prog_menu(int planlen, int *ptrcurweek, int underweight, int overwei
         else if (underweight == TRUE)
         {
             printf("\nEnter how many [foods] did you eat this week? (%d) : ", *ptrcurweek);
-            scanf("%f", &foodcount);
+            scanf("%f", &weekprog[0][*ptrcurweek]);
         }
 
         (*ptrcurweek)++;
@@ -59,5 +59,7 @@ void weekly_prog_menu(int planlen, int *ptrcurweek, int underweight, int overwei
         // case 3:
         // goto menu; // option to return to the menu
         // break;
+
+    
     }
 }

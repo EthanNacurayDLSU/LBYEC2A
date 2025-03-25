@@ -14,7 +14,7 @@ int main()
 {
     float bmi = 0, h = 0, w = 0, lcal = 0, gcal = 0, loptimal = 0, goptimal = 0; // for bmi calculations
 
-    int overweight, underweight;
+    int overweight = FALSE, underweight = FALSE;
     int weekprog[3][16] = {0};    // two dimensional array to store the weekly progress data.
     int planlen = 8, curweek = 1; // length of exercise plan in weeks, curweek is current week of plan
 
@@ -103,13 +103,14 @@ menu:
     do
     {
         menu = 0;
+        getchar();
         main_menu_text();
         scanf("%d", &(menu));
 
         switch (menu)
         {
         case 1: // height and weight + BMI
-            heightweight(&h, &w, &bmi);
+            heightweight(&h, &w, &bmi, &overweight, &underweight, &menu);
 
             // goto menu;
 
@@ -117,7 +118,9 @@ menu:
         case 2: // bmi value and classification, 7700 cal / kg
             if (bmi == 0.0)
             {
-                puts("You have not entered your height and weight yet, please go back to the main menu");
+                puts("\nYou have not entered your height and weight yet, please go back to the main menu");
+                getchar();
+                continue;
             }
             else
             {
@@ -157,8 +160,13 @@ menu:
             weekly_prog_menu(planlen, &curweek, underweight, overweight, weekprog);
             // printf("afterfunc :  %d\n", curweek);
             break; // end of main menu switch case
+
+        default:
+            printf("\nInvalid option. Please try again.\n");
+            getchar();
+            continue;
         }
-        getchar();
+
     } while (menu != 5);
 
     printf("Closing Application");
