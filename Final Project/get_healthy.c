@@ -3,15 +3,16 @@
 #include "bmiformula.h"
 #include "weekly_prog.h"
 #include "exdie_plan.h"
+#include "windows.h"
 
 #define TRUE 1
 #define FALSE 0
 
-void main_menu();
+void main_menu_text();
 
 int main()
 {
-    float bmi, h, w, lcal, gcal, loptimal, goptimal; // for bmi calculations
+    float bmi = 0, h = 0, w = 0, lcal = 0, gcal = 0, loptimal = 0, goptimal = 0; // for bmi calculations
 
     int overweight, underweight;
     int weekprog[3][16] = {0};    // two dimensional array to store the weekly progress data.
@@ -97,62 +98,80 @@ int main()
 
     // menu system here
 
-    int menu = 0;
 menu:
-
-    main_menu(&menu);
-
-    switch (menu)
+    int menu = 0;
+    do
     {
-    case 1: // height and weight + BMI
-        heightweight(&h, &w, &bmi);
+        menu = 0;
+        main_menu_text();
+        scanf("%d", &(menu));
 
-        getchar();
-        goto menu;
-        break;
-    case 2: // bmi value and classification, 7700 cal / kg
-
-        bmiclass(&h, &w, &bmi, &gcal, &lcal, &goptimal, &loptimal, &underweight, &overweight);
-
-        getchar();
-        goto menu;
-        break;
-    case 3: // exercise/diet plan
-        while (1)
+        switch (menu)
         {
-            int exdiechoice = 4;
-            printf("\nLoading Exercise/Diet Plan Menu. . .\n");
-            checkPlan(underweight, overweight, &exdiechoice); // Function call for Initial ExDie Plan Check
+        case 1: // height and weight + BMI
+            heightweight(&h, &w, &bmi);
 
-            switch (exdiechoice)
-            {
-            case 1:                               // Exercise Plan
-                exercisePlan(bmi, lcal, planlen); // Function call for Exercise Plan Menu
-                break;                            // Go back to menu after
-            case 2:                               // Diet Plan
-                dietPlan(bmi, lcal, planlen);     // Function call for Exercise Plan Menu
-                break;
-            case 3: // Go back to MAIN MENU
-                printf("Returning to the main menu...\n");
-                goto menu; // CHANGE THIS IS NOT SAFE
-            default:       // Invalid option
-                printf("Invalid option. Please try again.\n");
-                continue;
-            }
+            // goto menu;
+
             break;
+        case 2: // bmi value and classification, 7700 cal / kg
+            if (bmi == 0.0)
+            {
+                puts("You have not entered your height and weight yet, please go back to the main menu");
+            }
+            else
+            {
+                bmiclass(&h, &w, &bmi, &gcal, &lcal, &goptimal, &loptimal, &underweight, &overweight);
+            }
+
+            // goto menu;
+            break;
+        case 3: // exercise/diet plan
+            while (1)
+            {
+                int exdiechoice = 4;
+                printf("\nLoading Exercise/Diet Plan Menu. . .\n");
+                checkPlan(underweight, overweight, &exdiechoice); // Function call for Initial ExDie Plan Check
+
+                switch (exdiechoice)
+                {
+                case 1:                               // Exercise Plan
+                    exercisePlan(bmi, lcal, planlen); // Function call for Exercise Plan Menu
+                    break;                            // Go back to menu after
+                case 2:                               // Diet Plan
+                    dietPlan(bmi, lcal, planlen);     // Function call for Exercise Plan Menu
+                    break;
+                case 3: // Go back to MAIN MENU
+                    printf("Returning to the main menu...\n");
+                    goto menu; // CHANGE THIS IS NOT SAFE
+                default:       // Invalid option
+                    printf("Invalid option. Please try again.\n");
+                    continue;
+                }
+                break;
+            }
+            goto menu;
+        case 4: // weekly progress
+            // printf("beforefunc :  %d\n", curweek);
+            weekly_prog_menu(planlen, &curweek, underweight, overweight, weekprog);
+            // printf("afterfunc :  %d\n", curweek);
+            break; // end of main menu switch case
         }
-        goto menu;
-    case 4: // weekly progress
-        // printf("beforefunc :  %d\n", curweek);
-        weekly_prog_menu(planlen, &curweek, underweight, overweight, weekprog);
-        // printf("afterfunc :  %d\n", curweek);
-        break; // end of main menu switch case
+        getchar();
+    } while (menu != 5);
+
+    printf("Closing Application");
+    for (int i = 0; i < 5; i++)
+    {
+        printf(".");
+        Sleep(50);
     }
+    puts("Thanks for using get_healthy.exe!!");
 
     return 0;
 }
 
-void main_menu(int *ptrmenu)
+void main_menu_text()
 {
     printf("\n==========================\n"
            "       MENU Options\n"
@@ -160,7 +179,7 @@ void main_menu(int *ptrmenu)
            "(1) Height and Weight + BMI\n"
            "(2) Ideal BMI Comparison\n"
            "(3) Exercise/Diet Plan\n"
-           "(4) Weekly Progress");
+           "(4) Weekly Progress\n"
+           "(5) Exit Program");
     printf("\nEnter choice: ");
-    scanf("%d", &(*ptrmenu));
 }
