@@ -2,7 +2,7 @@
 #include <string.h>
 #include "bmiformula.h"
 #include "weekly_prog.h"
-// #include "exdie_plan.h"
+#include "exdie_plan.h"
 
 #define TRUE 1
 #define FALSE 0
