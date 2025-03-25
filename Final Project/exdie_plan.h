@@ -32,45 +32,50 @@ void checkPlan(int underweight, int overweight, int *exdiechoice)
     }
 }
 
-void calcuExer(int exmchoice, float lcal, int planlen) // Calculations for Exercise Needed
+void calcuExer(int *exmchoice, float lcal, int planlen, float *hrsneed, float *minsneed, float *loseweek, char **thatstring) // Calculations for Exercise Needed, pointers modify value from here to main
 {
     float calBurn[] = {350, 450, 600, 500}; // float array of how many calories burned per hour, ordered by menu option
-    if (exmchoice < 1 || exmchoice > 4)
+    char *activities[] = {"Walking", "Jogging", "Running", "Swimming"};
+    if (*exmchoice < 1 || *exmchoice > 4)
     {
         printf("Invalid option. Please try again.\n"); // Invalid option
         return;
     }
 
-    float hrsneed = lcal / (planlen * calBurn[exmchoice - 1]);
-    float minsneed = hrsneed * 60;
-    float loseweek = lcal / planlen;
+    *loseweek = lcal / planlen;
+    *hrsneed = lcal / (planlen * calBurn[*exmchoice - 1]);
+    *minsneed = (*hrsneed) * 60;
+    *thatstring = activities[*exmchoice - 1];
 
-    printf("You need to lose %.1f calories, which means you need to aim to lose around %.1f calories per week.\n", lcal, loseweek);
-    printf("Consider aiming to do your chosen activity for at least %.1f minutes this week.\n", minsneed);
+    printf("You need to lose %.1f calories, which means you need to aim to lose around %.1f calories per week.\n", lcal, lcal / planlen);
+    printf("Consider aiming to do %s for at least %.1f minutes this week.\n", *thatstring, *minsneed);
+
+    // printf("DEBUG INSIDE CALCUEXER FUNCTION: Loseweek=%.2f, HrsNeed=%.2f, MinsNeed=%.2f\n", *loseweek, *hrsneed, *minsneed);
 }
 
-void calcuDiet(int dtchoice, float gcal, int planlen) // Calculations for Diet
+void calcuDiet(int *dtchoice, float gcal, int planlen, float *servingsweek, float *gainweek, char **thatstring) // Calculations for Diet, pointers modify value from here to main
 {
     float calLose[] = {302, 132, 130, 34}; // Calories per serving of food
-    if (dtchoice < 1 || dtchoice > 4)
+    char *foods[] = {"Chicken Nuggets", "Tuna", "Rice", "Broccoli"};
+    if (*dtchoice < 1 || *dtchoice > 4)
     {
         printf("Invalid option. Please try again.\n"); // float array of how many calories burned per hour, ordered by menu option
         return;
     }
 
-    float servingsweek = (gcal / planlen) / calLose[dtchoice - 1]; //
-    float gainweek = gcal / planlen;
+    *gainweek = gcal / planlen;
+    *servingsweek = (*gainweek) / calLose[*dtchoice - 1]; //
+    *thatstring = foods[*dtchoice - 1];
 
-    printf("You need to gain %.1f calories, which means you need to gain around %.1f calories per week.\n", gcal, gainweek);
-    printf("Consider aiming to eat at least %.1f servings of this food this week.\n", servingsweek);
+    printf("You need to gain %.1f calories, which means you need to gain around %.1f calories per week.\n", gcal, *gainweek);
+    printf("Consider aiming to eat at least %.1f servings of %s this week.\n", *servingsweek, *thatstring);
 }
 
-void exercisePlan(float bmi, float lcal, int planlen) // Exercise Plan Menu
+void exercisePlan(float bmi, float lcal, int planlen, int *exmchoice, float *hrsneed, float *minsneed, float *loseweek, char **thatstring) // Exercise Plan Menu
 {
     if (bmi < 18.5)
     {
         printf("You are already underweight! Please reconsider doing an exercise plan.\n");
-        printf("Returning to the menu...\n");
         return;
     }
 
@@ -82,19 +87,17 @@ void exercisePlan(float bmi, float lcal, int planlen) // Exercise Plan Menu
            "(3) Running\n"
            "(4) Swimming\n");
 
-    int exmchoice;
     printf("\nEnter choice: ");
-    scanf("%d", &exmchoice);
+    scanf("%d", exmchoice);
 
-    calcuExer(exmchoice, lcal, planlen); // Function Call for Exercise Calculations
+    calcuExer(exmchoice, lcal, planlen, hrsneed, minsneed, loseweek, thatstring); // Function Call for Exercise Calculations
 }
 
-void dietPlan(float bmi, float gcal, int planlen) // Diet Plan Menu
+void dietPlan(float bmi, float gcal, int planlen, int *dtchoice, float *servingsweek, float *gainweek, char **thatstring) // Diet Plan Menu
 {
     if (bmi > 24.9)
     {
         printf("You are already overweight! Please reconsider doing a diet plan.\n");
-        printf("Returning to the menu...\n");
         return;
     }
 
@@ -106,9 +109,8 @@ void dietPlan(float bmi, float gcal, int planlen) // Diet Plan Menu
            "(3) Rice\n"
            "(4) Broccoli\n");
 
-    int dtchoice;
     printf("\nEnter choice: ");
-    scanf("%d", &dtchoice);
+    scanf("%d", dtchoice);
 
-    calcuDiet(dtchoice, gcal, planlen); // Function Call for Diet Calculations
+    calcuDiet(dtchoice, gcal, planlen, servingsweek, gainweek, thatstring); // Function Call for Diet Calculations
 }
