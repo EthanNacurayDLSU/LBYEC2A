@@ -120,11 +120,9 @@ menu:
     case 3: // exercise/diet plan
         while (1)
         {
-            int exdiechoice;
-            printf("\nExercise/Diet Plan Menu. . .\n");
-            displayPlanMenu(); // Function call for Initial ExDie Plan Menu
-            printf("\n>> ");
-            scanf("%d", &exdiechoice);
+            int exdiechoice = 4;
+            printf("\nLoading Exercise/Diet Plan Menu. . .\n");
+            checkPlan(underweight, overweight, &exdiechoice); // Function call for Initial ExDie Plan Check
 
             switch (exdiechoice)
             {
@@ -141,8 +139,9 @@ menu:
                 printf("Invalid option. Please try again.\n");
                 continue;
             }
+            break;
         }
-        break;
+        goto menu;
     case 4: // weekly progress
         // printf("beforefunc :  %d\n", curweek);
         weekly_prog_menu(planlen, &curweek, underweight, overweight, weekprog);
