@@ -150,7 +150,7 @@ menu:
                 }
                 break;
             }
-            goto menu;
+
         case 4: // weekly progress
             // printf("beforefunc :  %d\n", curweek);
             weekly_prog_menu(planlen, &curweek, underweight, overweight, weekprog);
