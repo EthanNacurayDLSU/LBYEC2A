@@ -165,9 +165,9 @@ menu:
     for (int i = 0; i < 5; i++)
     {
         printf(".");
-        Sleep(50);
+        Sleep(200);
     }
-    puts("Thanks for using get_healthy.exe!!");
+    puts("\nThanks for using get_healthy.exe!!");
 
     return 0;
 }
