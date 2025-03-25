@@ -23,6 +23,11 @@ int main()
     char userst[50] = "/n", passwordst[50] = "/n"; // For stored username and password.
     int lschoice;                                  // For user's input in menu
 
+    int exdiechoice = 4;
+    float servingsweek = 0, gainweek = 0.0, hrsneed = 0, minsneed = 0, loseweek = 0.0;
+    int exmchoice = 0, dtchoice = 0;
+    char *thatstring = NULL;
+
     // ASCII Text LOGO
     puts("\n\n\n");
     puts("  ____      _     _   _            _ _   _           _ ");
@@ -33,6 +38,7 @@ int main()
     puts("                                               |___/   ");
 
     // login/signup options
+    /*
     while (1)
     {
         printf("======= Login/Signup =======\n");
@@ -94,7 +100,7 @@ int main()
             printf("Invalid choice. Please try again.\n");
             continue; // Return to login menu so user can try again
         }
-    }
+    }*/
 
     // menu system here
 
@@ -132,10 +138,10 @@ menu:
         case 3: // exercise/diet plan
             while (1)
             {
-                int exdiechoice = 4;
+                /*int exdiechoice = 4;
                 float servingsweek = 0, gainweek = 0.0, hrsneed = 0, minsneed = 0, loseweek = 0.0;
                 int exmchoice = 0, dtchoice = 0;
-                char *thatstring = NULL;
+                char *thatstring = NULL;*/
 
                 printf("\nLoading Exercise/Diet Plan Menu. . .\n");
                 checkPlan(underweight, overweight, &exdiechoice); // Function call for Initial ExDie Plan Check
@@ -160,6 +166,7 @@ menu:
                 }
                 break;
             }
+
             break;
 
         case 4: // weekly progress
