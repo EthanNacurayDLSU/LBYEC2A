@@ -143,8 +143,9 @@ menu:
                     break;
                 case 3: // Go back to MAIN MENU
                     printf("Returning to the main menu...\n");
-                    goto menu; // CHANGE THIS IS NOT SAFE
-                default:       // Invalid option
+                    // goto menu; // CHANGE THIS IS NOT SAFE
+                    break;
+                default: // Invalid option
                     printf("Invalid option. Please try again.\n");
                     continue;
                 }
