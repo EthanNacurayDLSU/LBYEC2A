@@ -25,10 +25,10 @@ int main()
     char userst[50] = "/n", passwordst[50] = "/n"; // For stored username and password.
     int lschoice;                                  // For user's input in menu
 
-    int exdiechoice = 4;
-    float servingsweek = 0, gainweek = 0.0, hrsneed = 0, minsneed = 0, loseweek = 0.0;
-    int exmchoice = 0, dtchoice = 0;
-    char *thatstring = NULL;
+    int exdiechoice = 4;                                                               // determines if the user is underweight or overweight. this is changed in a function call in main menu option 3. defaults to 4 since it isnt assigned
+    float servingsweek = 0, gainweek = 0.0, hrsneed = 0, minsneed = 0, loseweek = 0.0; // things the user need to do weekly
+    int exmchoice = 0, dtchoice = 0;                                                   // exercise type and diet food choice
+    char *thatstring = NULL;                                                           // string that contains what type of food/exercise the user is doing
 
     // ASCII Text LOGO
     puts("\n\n\n");
@@ -109,8 +109,8 @@ int main()
     do
     {
         menu = 0;
-        getch();
-        main_menu_text();
+        getch();          // waits for user to press any key every menu loop. makes sure the user reads the previous output
+        main_menu_text(); // function call for main menu text, found at the bottom of this c file
         scanf("%d", &(menu));
 
         switch (menu)
@@ -118,16 +118,15 @@ int main()
         case 1: // height and weight + BMI
             heightweight(&h, &w, &bmi, &overweight, &underweight, &menu);
             break;
-        case 2: // bmi value and classification, 7700 cal / kg
-            if (bmi == 0.0)
+        case 2:             // bmi value and classification, 7700 cal / kg
+            if (bmi == 0.0) // error check.
             {
                 puts("\nYou have not entered your height and weight yet, please go back to the main menu");
-
                 continue;
             }
             else
             {
-                bmiclass(&h, &w, &bmi, &gcal, &lcal, &goptimal, &loptimal, &underweight, &overweight);
+                bmiclass(&h, &w, &bmi, &gcal, &lcal, &goptimal, &loptimal, &underweight, &overweight); // function call to classify the user's bmi and to get the weight and calories they need to lose/gain
             }
 
             break;
@@ -137,8 +136,14 @@ int main()
             {
                 while (1)
                 {
-                    printf("How many weeks long would you like your plan to be? : ");
+                    printf("How many weeks long would you like your plan to be? (max 15 weeks): "); // determines the length of the plan
                     scanf("%d", &planlen);
+
+                    if (planlen > 15) // makes sure the plan length isnt too long. The array is allocated for 16 weeks but because out loops start at 1, there is only a max of 15.
+                    {
+                        puts("You are making your fitness plan too long, please reconsider");
+                        continue;
+                    }
 
                     printf("\nLoading Exercise/Diet Plan Menu. . .\n");
                     checkPlan(underweight, overweight, &exdiechoice); // Function call for Initial ExDie Plan Check
@@ -166,7 +171,7 @@ int main()
                     break;
                 }
             }
-            else
+            else // a check for if the user has selected menu option 2 first. code breaks if this isnt in place
             {
                 puts("You have not seen your ideal BMI and classification yet. Returning to main menu. Please select menu option 2 before 3.");
                 continue;
@@ -192,39 +197,38 @@ int main()
                     {
                         prog_report(planlen, &curweek, underweight, overweight, weekprog, thatstring, minsneed, servingsweek);
                     }
-                    else
+                    else // check to see if the program has been completed. prevents the user from entering values into weeks of the program he didnt want
                     {
                         printf("Your get_healthy.exe plan has ended. This is the end of your program.\n");
                         printf("Please check your weekly progress table for your results\n");
                     }
-                    // getchar();
                     break;
 
                 case 2:
 
-                    if (exdiechoice == 2) // diet plan
+                    if (exdiechoice == 2) // checks if diet plan
                     {
                         prog_table(planlen, weekprog, exdiechoice, dtchoice);
                     }
-                    else if (exdiechoice == 1) // exercise plan
+                    else if (exdiechoice == 1) // checks if exercise plan
                     {
                         prog_table(planlen, weekprog, exdiechoice, exmchoice);
                     }
 
-                    if (curweek > planlen)
+                    if (curweek > planlen) // checks if the program has finished according to the number of weeks the user wanted their program to be long
                     {
                         if (exdiechoice == 2) // diet plan
                         {
-                            printf("You gained %.2f calories over %d weeks\n", calsum(weekprog, planlen), planlen);
-                            printf("Your target was to gain %.2f calories over %d weeks\n", gcal, planlen);
-                        }
+                            printf("You gained %.2f calories over %d weeks\n", calsum(weekprog, planlen), planlen); // calsum is the function call to take the sum of the user's burned/gained calories.
+                            printf("Your target was to gain %.2f calories over %d weeks\n", gcal, planlen);         // calsum only works AFTER the table function has been called because the values are updated in the table function
+                        } // hence why calsum and the success check is located here.
                         else if (exdiechoice == 1) // exercise plan
                         {
                             printf("You lost %.2f calories over %d weeks\n", (calsum(weekprog, planlen)), planlen);
                             printf("Your target was to lose %.2f calories over %d weeks\n", lcal, planlen);
                         }
 
-                        if (!(lcal < calsum(weekprog, planlen)) || !(gcal < calsum(weekprog, planlen)))
+                        if (!(lcal < calsum(weekprog, planlen)) || !(gcal < calsum(weekprog, planlen))) // this is a check for whether the user passed or failed their weekly diet program
                         {
                             puts("You have FAILED!!!");
                         }
@@ -237,8 +241,9 @@ int main()
                 }
             } while (weekchoice != 3);
             break; // end of main menu switch case
-
-        default:
+        case 5:    // empty case to prevent the default error message from showing when the user enters 5 to exit the program.
+            break;
+        default: // error check
             printf("\nInvalid option. Please try again.\n");
             continue;
         }
@@ -248,13 +253,14 @@ int main()
     for (int i = 0; i < 5; i++)
     {
         printf(".");
-        Sleep(200);
+        Sleep(200); // i wanted to have fun with sleep timers - ethan
     }
     puts("\nThanks for using get_healthy.exe!!");
 
     return 0;
 }
-float calsum(float weekprog[6][16], int planlen)
+
+float calsum(float weekprog[6][16], int planlen) // function to take the sum of all calories burned/gained. used to determine the success of the user
 {
     float caltotal = 0.0;
     for (int i = 1; i <= planlen; i++)
@@ -264,7 +270,7 @@ float calsum(float weekprog[6][16], int planlen)
     return caltotal;
 }
 
-void main_menu_text()
+void main_menu_text() // main menu text.
 {
     printf("\n==========================\n"
            "       MENU Options\n"
