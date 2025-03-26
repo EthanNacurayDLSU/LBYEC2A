@@ -5,7 +5,7 @@
 
 void weekly_menu_text()
 {
-    puts("Weekly Progress was Chosen");
+
     printf("\n==========================\n"
            "   Weekly Progress Menu\n"
            "==========================\n"
@@ -16,9 +16,9 @@ void weekly_menu_text()
     printf("Enter choice: ");
 }
 
-void prog_report(int planlen, int *ptrcurweek, int underweight, int overweight, int weekprog[3][16], char thatstring[])
+void prog_report(int planlen, int *ptrcurweek, int underweight, int overweight, float weekprog[3][16], char thatstring[])
 {
-    if (*ptrcurweek <= planlen)
+    if ((*ptrcurweek) <= planlen)
     {
         printf("\n===== Week %d Progress Report =====", *ptrcurweek);
         if (overweight == TRUE)
@@ -39,6 +39,32 @@ void prog_report(int planlen, int *ptrcurweek, int underweight, int overweight, 
     }
 }
 
+void array_weekly(int planlen, float weekprog[3][16], float weektarget)
+{
+    for (int i = 0; i < planlen; i++)
+    {
+        (weekprog[1][i]) = weektarget;
+    }
+}
+
+void prog_table(int planlen, float weekprog[3][16])
+{
+    printf("\n===== Week Progress Table =====\n\n");
+    printf("|                        |");
+
+    for (int i = 1; i <= planlen; i++)
+    {
+        printf("|  Week %d  |", i);
+    }
+
+    printf("\n|     Weekly Progress    |");
+    for (int i = 1; i <= planlen; i++)
+    {
+        printf("| %8.1f |", weekprog[0][i]);
+    }
+}
+
+/*
 void weekly_prog_menu(int planlen, int *ptrcurweek, int underweight, int overweight, int weekprog[3][16], char thatstring[], float *ptrminsneed)
 {
     puts("Weekly Progress was Chosen");
@@ -58,7 +84,7 @@ void weekly_prog_menu(int planlen, int *ptrcurweek, int underweight, int overwei
     {
     case 1: // updating the progress of the week
 
-        // float /*exertime,*/ foodcount; // exercise time and nugget count
+        // float  foodcount; // exercise time and nugget count
         if (*ptrcurweek <= planlen)
         {
             printf("\n===== Week %d Progress Report =====", *ptrcurweek);
@@ -109,4 +135,4 @@ void weekly_prog_menu(int planlen, int *ptrcurweek, int underweight, int overwei
     case 3:
         break;
     }
-}
+}*/

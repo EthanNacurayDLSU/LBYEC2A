@@ -16,7 +16,7 @@ int main()
     float bmi = 0, h = 0, w = 0, lcal = 0, gcal = 0, loptimal = 0, goptimal = 0; // for bmi calculations
 
     int overweight = FALSE, underweight = FALSE; // This needs to stay.
-    int weekprog[3][16] = {0};                   // two dimensional array to store the weekly progress data.
+    float weekprog[3][16] = {0.0};                   // two dimensional array to store the weekly progress data.
     int planlen = 8, curweek = 1;                // length of exercise plan in weeks, curweek is current week of plan
 
     // login/signup variables
@@ -152,10 +152,12 @@ menu:
                 case 1:                                                                                        // Exercise Plan
                     exercisePlan(bmi, lcal, planlen, &exmchoice, &hrsneed, &minsneed, &loseweek, &thatstring); // Function call for Exercise Plan Menu
                     // printf("DEBUG: servingsweek:%f gainweek:%f hrsneed:%f minsneed:%f loseweek:%f exmchoice:%d dtchoice:%d thatstring:%s", servingsweek, gainweek, hrsneed, minsneed, loseweek, exmchoice, dtchoice, thatstring);
+                    array_weekly(planlen, weekprog, minsneed);                                      // this function adds the weekly goal into the array
                     break;                                                                          // Go back to menu after
                 case 2:                                                                             // Diet Plan
                     dietPlan(bmi, gcal, planlen, &dtchoice, &servingsweek, &gainweek, &thatstring); // Function call for Exercise Plan Menu
                     // printf("DEBUG: servingsweek:%f gainweek:%f hrsneed:%f minsneed:%f loseweek:%f exmchoice:%d dtchoice:%d thatstring:%s", servingsweek, gainweek, hrsneed, minsneed, loseweek, exmchoice, dtchoice, thatstring);
+                    array_weekly(planlen, weekprog, gainweek);
                     break;
                 case 3: // Go back to MAIN MENU
                     printf("Returning to the main menu...\n");
@@ -171,9 +173,14 @@ menu:
             break;
 
         case 4: // weekly progress
-            // printf("beforefunc :  %d\n", curweek);
-            int weekchoice;
 
+            /*for (int i = 0; i < planlen; i++)
+            {
+                printf("%d | ", weekprog[1][i]);
+            }*/
+
+            int weekchoice;
+            puts("Weekly Progress was Chosen");
             do
             {
                 weekchoice = 0;
@@ -184,10 +191,10 @@ menu:
                 switch (weekchoice)
                 {
                 case 1:
+                    prog_report(planlen, &curweek, underweight, overweight, weekprog, thatstring);
                     break;
-
                 case 2:
-
+                    prog_table(planlen, weekprog);
                     break;
                 }
             } while (weekchoice != 3);
