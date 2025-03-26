@@ -10,14 +10,15 @@
 #define FALSE 0
 
 void main_menu_text();
+float calsum();
 
 int main()
 {
-    float bmi = 0, h = 0, w = 0, lcal = 0, gcal = 0, loptimal = 0, goptimal = 0; // for bmi calculations
+    float bmi = 0, h = 0, w = 0.0, lcal = 0, gcal = 0, loptimal = 0.0, goptimal = 0.0; // for bmi calculations
 
     int overweight = FALSE, underweight = FALSE; // This needs to stay.
-    float weekprog[3][16] = {0.0};                   // two dimensional array to store the weekly progress data.
-    int planlen = 8, curweek = 1;                // length of exercise plan in weeks, curweek is current week of plan
+    float weekprog[6][16] = {0.0};               // two dimensional array to store the weekly progress data.
+    int planlen = 0, curweek = 1;                // length of exercise plan in weeks, curweek is current week of plan
 
     // login/signup variables
     char usernameinp[50], passwordinp[50];         // For username and password input
@@ -137,47 +138,54 @@ menu:
             // goto menu;
             break;
         case 3: // exercise/diet plan
-            while (1)
+
+            if (loptimal != 0.0 || goptimal != 0.0)
             {
-                /*int exdiechoice = 4;
-                float servingsweek = 0, gainweek = 0.0, hrsneed = 0, minsneed = 0, loseweek = 0.0;
-                int exmchoice = 0, dtchoice = 0;
-                char *thatstring = NULL;*/
-
-                printf("\nLoading Exercise/Diet Plan Menu. . .\n");
-                checkPlan(underweight, overweight, &exdiechoice); // Function call for Initial ExDie Plan Check
-
-                switch (exdiechoice)
+                while (1)
                 {
-                case 1:                                                                                        // Exercise Plan
-                    exercisePlan(bmi, lcal, planlen, &exmchoice, &hrsneed, &minsneed, &loseweek, &thatstring); // Function call for Exercise Plan Menu
-                    // printf("DEBUG: servingsweek:%f gainweek:%f hrsneed:%f minsneed:%f loseweek:%f exmchoice:%d dtchoice:%d thatstring:%s", servingsweek, gainweek, hrsneed, minsneed, loseweek, exmchoice, dtchoice, thatstring);
-                    array_weekly(planlen, weekprog, minsneed);                                      // this function adds the weekly goal into the array
-                    break;                                                                          // Go back to menu after
-                case 2:                                                                             // Diet Plan
-                    dietPlan(bmi, gcal, planlen, &dtchoice, &servingsweek, &gainweek, &thatstring); // Function call for Exercise Plan Menu
-                    // printf("DEBUG: servingsweek:%f gainweek:%f hrsneed:%f minsneed:%f loseweek:%f exmchoice:%d dtchoice:%d thatstring:%s", servingsweek, gainweek, hrsneed, minsneed, loseweek, exmchoice, dtchoice, thatstring);
-                    array_weekly(planlen, weekprog, gainweek);
+                    /*int exdiechoice = 4;
+                    float servingsweek = 0, gainweek = 0.0, hrsneed = 0, minsneed = 0, loseweek = 0.0;
+                    int exmchoice = 0, dtchoice = 0;
+                    char *thatstring = NULL;*/
+
+                    printf("How many weeks long would you like your plan to be? : ");
+                    scanf("%d", &planlen);
+
+                    printf("\nLoading Exercise/Diet Plan Menu. . .\n");
+                    checkPlan(underweight, overweight, &exdiechoice); // Function call for Initial ExDie Plan Check
+
+                    switch (exdiechoice)
+                    {
+                    case 1:                                                                                        // Exercise Plan
+                        exercisePlan(bmi, lcal, planlen, &exmchoice, &hrsneed, &minsneed, &loseweek, &thatstring); // Function call for Exercise Plan Menu
+                        // printf("DEBUG: servingsweek:%f gainweek:%f hrsneed:%f minsneed:%f loseweek:%f exmchoice:%d dtchoice:%d thatstring:%s", servingsweek, gainweek, hrsneed, minsneed, loseweek, exmchoice, dtchoice, thatstring);
+                        array_weekly(planlen, weekprog, minsneed);                                      // this function adds the weekly goal into the array
+                        break;                                                                          // Go back to menu after
+                    case 2:                                                                             // Diet Plan
+                        dietPlan(bmi, gcal, planlen, &dtchoice, &servingsweek, &gainweek, &thatstring); // Function call for Exercise Plan Menu
+                        // printf("DEBUG: servingsweek:%f gainweek:%f hrsneed:%f minsneed:%f loseweek:%f exmchoice:%d dtchoice:%d thatstring:%s", servingsweek, gainweek, hrsneed, minsneed, loseweek, exmchoice, dtchoice, thatstring);
+                        array_weekly(planlen, weekprog, gainweek);
+                        break;
+                    case 3: // Go back to MAIN MENU
+                        printf("Returning to the main menu...\n");
+                        // goto menu; // CHANGE THIS IS NOT SAFE
+                        break;
+                    default: // Invalid option
+                        printf("Invalid option. Please try again.\n");
+                        continue;
+                    }
                     break;
-                case 3: // Go back to MAIN MENU
-                    printf("Returning to the main menu...\n");
-                    // goto menu; // CHANGE THIS IS NOT SAFE
-                    break;
-                default: // Invalid option
-                    printf("Invalid option. Please try again.\n");
-                    continue;
                 }
-                break;
+            }
+            else
+            {
+                puts("You have not seen your ideal BMI and classification yet. Returning to main menu. Please select menu option 2 before 3.");
+                continue;
             }
 
             break;
 
         case 4: // weekly progress
-
-            /*for (int i = 0; i < planlen; i++)
-            {
-                printf("%d | ", weekprog[1][i]);
-            }*/
 
             int weekchoice;
             puts("Weekly Progress was Chosen");
@@ -191,22 +199,84 @@ menu:
                 switch (weekchoice)
                 {
                 case 1:
-                    prog_report(planlen, &curweek, underweight, overweight, weekprog, thatstring);
+                    if ((curweek) <= planlen)
+                    {
+                        prog_report(planlen, &curweek, underweight, overweight, weekprog, thatstring, minsneed, servingsweek);
+                    }
+                    else
+                    {
+                        printf("Your get_healthy.exe plan has ended. This is the end of your program.\n");
+                        printf("Please check your weekly progress table for your results\n");
+
+                        /*  if (exdiechoice == 2) // diet plan
+                         {
+                             printf("You gained %.2f calories over %d weeks\n", calsum(weekprog, planlen), planlen);
+                             printf("Your target was to gain %.2f calories over %d weeks\n", gcal, planlen);
+                         }
+                         else if (exdiechoice == 1) // exercise plan
+                         {
+                             printf("You lost %.2f calories over %d weeks\n", (calsum(weekprog, planlen)), planlen);
+                             printf("Your target was to lose %.2f calories over %d weeks\n", lcal, planlen);
+                         }
+
+                         if (!(lcal < calsum(weekprog, planlen)) || !(gcal < calsum(weekprog, planlen)))
+                         {
+                             puts("You have SUCCEEDED!!!");
+
+                         }
+                         else
+                         {
+                             puts("You have FAILED!!!");
+                         }*/
+                    }
+                    // getchar();
                     break;
+
                 case 2:
-                    prog_table(planlen, weekprog);
+
+                    if (exdiechoice == 2) // diet plan
+                    {
+                        prog_table(planlen, weekprog, exdiechoice, dtchoice);
+                    }
+                    else if (exdiechoice == 1) // exercise plan
+                    {
+                        prog_table(planlen, weekprog, exdiechoice, exmchoice);
+                    }
+
+                    if (curweek > planlen)
+                    {
+                        // printf("Your get_healthy.exe plan has ended. This is the end of your program.\n");
+
+                        if (exdiechoice == 2) // diet plan
+                        {
+                            printf("You gained %.2f calories over %d weeks\n", calsum(weekprog, planlen), planlen);
+                            printf("Your target was to gain %.2f calories over %d weeks\n", gcal, planlen);
+                        }
+                        else if (exdiechoice == 1) // exercise plan
+                        {
+                            printf("You lost %.2f calories over %d weeks\n", (calsum(weekprog, planlen)), planlen);
+                            printf("Your target was to lose %.2f calories over %d weeks\n", lcal, planlen);
+                        }
+
+                        if (!(lcal < calsum(weekprog, planlen)) || !(gcal < calsum(weekprog, planlen)))
+                        {
+                            puts("You have FAILED!!!");
+                        }
+                        else
+                        {
+                            puts("You have SUCCEEDED!!!");
+                        }
+                    }
                     break;
                 }
+                // getchar();
+
             } while (weekchoice != 3);
-
-            // weekly_prog_menu(planlen, &curweek, underweight, overweight, weekprog, thatstring, &minsneed);
-            //  printf("afterfunc :  %d\n", curweek);
-
             break; // end of main menu switch case
 
         default:
             printf("\nInvalid option. Please try again.\n");
-            getchar();
+            // getchar();
             continue;
         }
     } while (menu != 5);
@@ -220,6 +290,15 @@ menu:
     puts("\nThanks for using get_healthy.exe!!");
 
     return 0;
+}
+float calsum(float weekprog[6][16], int planlen)
+{
+    float caltotal = 0.0;
+    for (int i = 1; i <= planlen; i++)
+    {
+        caltotal += weekprog[3][i];
+    }
+    return caltotal;
 }
 
 void main_menu_text()
