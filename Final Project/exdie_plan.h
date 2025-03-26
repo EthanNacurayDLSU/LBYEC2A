@@ -48,7 +48,7 @@ void calcuExer(int *exmchoice, float lcal, int planlen, float *hrsneed, float *m
     *thatstring = activities[*exmchoice - 1];
 
     printf("You need to lose %.1f calories, which means you need to aim to lose around %.1f calories per week.\n", lcal, lcal / planlen);
-    printf("Consider aiming to do %s for at least %.1f minutes this week.\n", *thatstring, *minsneed);
+    printf("Consider aiming to do %s for at least %.1f minutes every week.\n", *thatstring, *minsneed); //changed it from this week to every week
 
     // printf("DEBUG INSIDE CALCUEXER FUNCTION: Loseweek=%.2f, HrsNeed=%.2f, MinsNeed=%.2f\n", *loseweek, *hrsneed, *minsneed);
 }
@@ -68,7 +68,7 @@ void calcuDiet(int *dtchoice, float gcal, int planlen, float *servingsweek, floa
     *thatstring = foods[*dtchoice - 1];
 
     printf("You need to gain %.1f calories, which means you need to gain around %.1f calories per week.\n", gcal, *gainweek);
-    printf("Consider aiming to eat at least %.1f servings of %s this week.\n", *servingsweek, *thatstring);
+    printf("Consider aiming to eat at least %.1f servings of %s every week.\n", *servingsweek, *thatstring); //changed it from this week to every week
 }
 
 void exercisePlan(float bmi, float lcal, int planlen, int *exmchoice, float *hrsneed, float *minsneed, float *loseweek, char **thatstring) // Exercise Plan Menu
