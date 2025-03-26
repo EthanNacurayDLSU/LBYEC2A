@@ -4,6 +4,7 @@
 #include "weekly_prog.h"
 #include "exdie_plan.h"
 #include "windows.h"
+#include <conio.h>
 
 #define TRUE 1
 #define FALSE 0
@@ -109,7 +110,7 @@ menu:
     do
     {
         menu = 0;
-        getchar();
+        getch();
         main_menu_text();
         scanf("%d", &(menu));
 
@@ -125,7 +126,7 @@ menu:
             if (bmi == 0.0)
             {
                 puts("\nYou have not entered your height and weight yet, please go back to the main menu");
-                getchar();
+
                 continue;
             }
             else
@@ -171,8 +172,29 @@ menu:
 
         case 4: // weekly progress
             // printf("beforefunc :  %d\n", curweek);
-            weekly_prog_menu(planlen, &curweek, underweight, overweight, weekprog);
-            // printf("afterfunc :  %d\n", curweek);
+            int weekchoice;
+
+            do
+            {
+                weekchoice = 0;
+                getchar();
+                weekly_menu_text();
+                scanf("%d", &weekchoice);
+
+                switch (weekchoice)
+                {
+                case 1:
+                    break;
+
+                case 2:
+
+                    break;
+                }
+            } while (weekchoice != 3);
+
+            // weekly_prog_menu(planlen, &curweek, underweight, overweight, weekprog, thatstring, &minsneed);
+            //  printf("afterfunc :  %d\n", curweek);
+
             break; // end of main menu switch case
 
         default:
@@ -180,7 +202,6 @@ menu:
             getchar();
             continue;
         }
-
     } while (menu != 5);
 
     printf("Closing Application");

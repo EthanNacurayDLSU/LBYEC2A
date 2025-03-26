@@ -34,8 +34,8 @@ void checkPlan(int underweight, int overweight, int *exdiechoice)
 
 void calcuExer(int *exmchoice, float lcal, int planlen, float *hrsneed, float *minsneed, float *loseweek, char **thatstring) // Calculations for Exercise Needed, pointers modify value from here to main
 {
-    float calBurn[] = {350, 450, 600, 500}; // float array of how many calories burned per hour, ordered by menu option
-    char *activities[] = {"Walking", "Jogging", "Running", "Swimming"};
+    float calBurn[] = {350, 450, 600, 500};                             // float array of how many calories burned per hour, ordered by menu option
+    char *activities[] = {"walking", "jogging", "running", "swimming"}; // changed these to all lower case, makes it easier to integrate into sentences later
     if (*exmchoice < 1 || *exmchoice > 4)
     {
         printf("Invalid option. Please try again.\n"); // Invalid option
@@ -48,15 +48,15 @@ void calcuExer(int *exmchoice, float lcal, int planlen, float *hrsneed, float *m
     *thatstring = activities[*exmchoice - 1];
 
     printf("You need to lose %.1f calories, which means you need to aim to lose around %.1f calories per week.\n", lcal, lcal / planlen);
-    printf("Consider aiming to do %s for at least %.1f minutes every week.\n", *thatstring, *minsneed); //changed it from this week to every week
+    printf("Consider aiming to do %s for at least %.1f minutes every week.\n", *thatstring, *minsneed); // changed it from this week to every week
 
     // printf("DEBUG INSIDE CALCUEXER FUNCTION: Loseweek=%.2f, HrsNeed=%.2f, MinsNeed=%.2f\n", *loseweek, *hrsneed, *minsneed);
 }
 
 void calcuDiet(int *dtchoice, float gcal, int planlen, float *servingsweek, float *gainweek, char **thatstring) // Calculations for Diet, pointers modify value from here to main
 {
-    float calLose[] = {302, 132, 130, 34}; // Calories per serving of food
-    char *foods[] = {"Chicken Nuggets", "Tuna", "Rice", "Broccoli"};
+    float calLose[] = {302, 132, 130, 34};                           // Calories per serving of food
+    char *foods[] = {"chicken Nuggets", "tuna", "rice", "broccoli"}; // changed these to all lower case, makes it easier to integrate into sentences later
     if (*dtchoice < 1 || *dtchoice > 4)
     {
         printf("Invalid option. Please try again.\n"); // float array of how many calories burned per hour, ordered by menu option
@@ -68,7 +68,7 @@ void calcuDiet(int *dtchoice, float gcal, int planlen, float *servingsweek, floa
     *thatstring = foods[*dtchoice - 1];
 
     printf("You need to gain %.1f calories, which means you need to gain around %.1f calories per week.\n", gcal, *gainweek);
-    printf("Consider aiming to eat at least %.1f servings of %s every week.\n", *servingsweek, *thatstring); //changed it from this week to every week
+    printf("Consider aiming to eat at least %.1f servings of %s every week.\n", *servingsweek, *thatstring); // changed it from this week to every week
 }
 
 void exercisePlan(float bmi, float lcal, int planlen, int *exmchoice, float *hrsneed, float *minsneed, float *loseweek, char **thatstring) // Exercise Plan Menu

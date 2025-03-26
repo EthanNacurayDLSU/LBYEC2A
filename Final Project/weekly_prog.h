@@ -3,7 +3,43 @@
 #define TRUE 1
 #define FALSE 0
 
-void weekly_prog_menu(int planlen, int *ptrcurweek, int underweight, int overweight, int weekprog[3][16])
+void weekly_menu_text()
+{
+    puts("Weekly Progress was Chosen");
+    printf("\n==========================\n"
+           "   Weekly Progress Menu\n"
+           "==========================\n"
+           "(1) Enter This Week's Progress\n"
+           "(2) See Weekly Progress Table\n"
+           "(3) Return\n");
+
+    printf("Enter choice: ");
+}
+
+void prog_report(int planlen, int *ptrcurweek, int underweight, int overweight, int weekprog[3][16], char thatstring[])
+{
+    if (*ptrcurweek <= planlen)
+    {
+        printf("\n===== Week %d Progress Report =====", *ptrcurweek);
+        if (overweight == TRUE)
+        {
+            printf("\nEnter how many minutes of %s did you do this week (%d) : ", thatstring, *ptrcurweek); // if trying to lose weight
+            scanf("%f", &weekprog[0][*ptrcurweek]);
+        }
+        else if (underweight == TRUE)
+        {
+            printf("\nEnter how many %s did you eat this week? (%d) : ", thatstring, *ptrcurweek);
+            scanf("%f", &weekprog[0][*ptrcurweek]);
+        }
+        (*ptrcurweek)++;
+    }
+    else
+    {
+        printf("Your get_healthy.exe plan has ended. This is the end of your program.");
+    }
+}
+
+void weekly_prog_menu(int planlen, int *ptrcurweek, int underweight, int overweight, int weekprog[3][16], char thatstring[], float *ptrminsneed)
 {
     puts("Weekly Progress was Chosen");
     int weekchoice;
@@ -15,32 +51,46 @@ void weekly_prog_menu(int planlen, int *ptrcurweek, int underweight, int overwei
            "(2) See Weekly Progress Table\n"
            "(3) Return\n");
 
-    printf("\nEnter choice: ");
+    printf("Enter choice: ");
     scanf("%d", &weekchoice);
 
     switch (weekchoice)
     {
     case 1: // updating the progress of the week
 
-        float /*exertime,*/ foodcount; // exercise time and nugget count
-
-        printf("\n===== Week %d Progress Report =====", *ptrcurweek);
-        if (/*overweight == TRUE*/ 1)
+        // float /*exertime,*/ foodcount; // exercise time and nugget count
+        if (*ptrcurweek <= planlen)
         {
-            printf("\nEnter how many minutes you ran/walked/jogged/swam this week (%d) : ", *ptrcurweek); // if trying to lose weight
-            scanf("%f", &weekprog[0][*ptrcurweek]);
+            printf("\n===== Week %d Progress Report =====", *ptrcurweek);
+            if (overweight == TRUE)
+            {
+                printf("\nEnter how many minutes of %s did you do this week (%d) : ", thatstring, *ptrcurweek); // if trying to lose weight
+                scanf("%f", &weekprog[0][*ptrcurweek]);
+            }
+            else if (underweight == TRUE)
+            {
+                printf("\nEnter how many %s did you eat this week? (%d) : ", thatstring, *ptrcurweek);
+                scanf("%f", &weekprog[0][*ptrcurweek]);
+            }
+            (*ptrcurweek)++;
         }
-        else if (underweight == TRUE)
+        else
         {
-            printf("\nEnter how many [foods] did you eat this week? (%d) : ", *ptrcurweek);
-            scanf("%f", &weekprog[0][*ptrcurweek]);
+            printf("Your get_healthy.exe plan has ended. This is the end of your program.");
         }
 
-        (*ptrcurweek)++;
-
-        //printf("aferinc : %d \n", *ptrcurweek);
+        // printf("aferinc : %d \n", *ptrcurweek);
         break;
     case 2: // see the weekly progress so far
+
+        if (weekprog == {0})
+        {
+            for (int i = 0; i < planlen; i++)
+            {
+                weekprog[1][i] =
+            }
+        }
+
         printf("\n===== Week Progress Table =====\n\n");
         printf("|                        |");
 
@@ -56,10 +106,7 @@ void weekly_prog_menu(int planlen, int *ptrcurweek, int underweight, int overwei
         }
 
         break;
-        // case 3:
-        // goto menu; // option to return to the menu
-        // break;
-
-    
+    case 3:
+        break;
     }
 }
