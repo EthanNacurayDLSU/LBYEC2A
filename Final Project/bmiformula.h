@@ -1,7 +1,3 @@
-/*#include <stdio.h>
-int main ()
-
-bmi = w / (h * h);*/
 
 #include <stdio.h>
 
@@ -27,8 +23,6 @@ void heightweight(float *ptrh, float *ptrw, float *ptrbmi, int *ptroverweight, i
     {
         printf("Your BMI is %.1f, You are Healthy!\n", (*ptrbmi));
         puts("Your health makes this program unnecessary, ending program...");
-        //(*ptrunderweight) = TRUE;
-        //(*ptroverweight) = TRUE;
         (*ptrmenu) = 5; // if you are healthy, then you dont need this program. menu option 5 terminates the program
     }
     else if ((*ptrbmi) < 29.9)
@@ -65,14 +59,12 @@ void bmiclass(float *ptrh, float *ptrw, float *ptrbmi, float *ptrgcal, float *pt
         printf("Your BMI is Less than Optimal.\n");
         printf("At your Current weight of %.1f, you need to gain:\n", (*ptrw));
         printf("%.1f Calories, %.1f kg.\n", (*ptrgcal), (*ptrgoptimal));
-        //(*ptrunderweight) = TRUE;
     }
     else if ((*ptrbmi) > 24.9)
     {
         printf("Your BMI is Higher than what is Healthy.\n");
         printf("At your Current weight of %.1f, you need to lose:\n", (*ptrw));
         printf("%.1f Calories, %.1f kg.\n", (*ptrlcal), (*ptrloptimal));
-        //(*ptroverweight) = TRUE;
     }
     else
     {

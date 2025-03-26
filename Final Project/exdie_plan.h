@@ -15,11 +15,6 @@ void checkPlan(int underweight, int overweight, int *exdiechoice)
         printf("You are overweight. Loading exercise plan. . .\n");
         *exdiechoice = 1; // Loads Exercise Plan
     }
-    /*else if (underweight == TRUE && overweight == TRUE)
-    {
-        printf("You are a healthy weight, you do ");
-        *exdiechoice = 3; // Boots user back to menu, like the skipper he is
-    }*/
     else if (underweight == FALSE && overweight == FALSE)
     {
         printf("You have not taken the BMI test. Please take the BMI test and return to this menu.");

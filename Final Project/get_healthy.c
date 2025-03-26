@@ -40,7 +40,7 @@ int main()
     puts("                                               |___/   ");
 
     // login/signup options
-    /*
+
     while (1)
     {
         printf("======= Login/Signup =======\n");
@@ -102,11 +102,9 @@ int main()
             printf("Invalid choice. Please try again.\n");
             continue; // Return to login menu so user can try again
         }
-    }*/
+    }
 
     // menu system here
-
-menu:
     int menu = 0;
     do
     {
@@ -119,9 +117,6 @@ menu:
         {
         case 1: // height and weight + BMI
             heightweight(&h, &w, &bmi, &overweight, &underweight, &menu);
-
-            // goto menu;
-
             break;
         case 2: // bmi value and classification, 7700 cal / kg
             if (bmi == 0.0)
@@ -135,7 +130,6 @@ menu:
                 bmiclass(&h, &w, &bmi, &gcal, &lcal, &goptimal, &loptimal, &underweight, &overweight);
             }
 
-            // goto menu;
             break;
         case 3: // exercise/diet plan
 
@@ -143,11 +137,6 @@ menu:
             {
                 while (1)
                 {
-                    /*int exdiechoice = 4;
-                    float servingsweek = 0, gainweek = 0.0, hrsneed = 0, minsneed = 0, loseweek = 0.0;
-                    int exmchoice = 0, dtchoice = 0;
-                    char *thatstring = NULL;*/
-
                     printf("How many weeks long would you like your plan to be? : ");
                     scanf("%d", &planlen);
 
@@ -207,27 +196,6 @@ menu:
                     {
                         printf("Your get_healthy.exe plan has ended. This is the end of your program.\n");
                         printf("Please check your weekly progress table for your results\n");
-
-                        /*  if (exdiechoice == 2) // diet plan
-                         {
-                             printf("You gained %.2f calories over %d weeks\n", calsum(weekprog, planlen), planlen);
-                             printf("Your target was to gain %.2f calories over %d weeks\n", gcal, planlen);
-                         }
-                         else if (exdiechoice == 1) // exercise plan
-                         {
-                             printf("You lost %.2f calories over %d weeks\n", (calsum(weekprog, planlen)), planlen);
-                             printf("Your target was to lose %.2f calories over %d weeks\n", lcal, planlen);
-                         }
-
-                         if (!(lcal < calsum(weekprog, planlen)) || !(gcal < calsum(weekprog, planlen)))
-                         {
-                             puts("You have SUCCEEDED!!!");
-
-                         }
-                         else
-                         {
-                             puts("You have FAILED!!!");
-                         }*/
                     }
                     // getchar();
                     break;
@@ -245,8 +213,6 @@ menu:
 
                     if (curweek > planlen)
                     {
-                        // printf("Your get_healthy.exe plan has ended. This is the end of your program.\n");
-
                         if (exdiechoice == 2) // diet plan
                         {
                             printf("You gained %.2f calories over %d weeks\n", calsum(weekprog, planlen), planlen);
@@ -269,14 +235,11 @@ menu:
                     }
                     break;
                 }
-                // getchar();
-
             } while (weekchoice != 3);
             break; // end of main menu switch case
 
         default:
             printf("\nInvalid option. Please try again.\n");
-            // getchar();
             continue;
         }
     } while (menu != 5);
