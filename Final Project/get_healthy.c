@@ -71,7 +71,7 @@ int main()
 
             if (strcmp(usernameinp, userst) == 0 && strcmp(passwordinp, passwordst) == 0)
             {
-                printf("Login successful! Welcome, %s!\n", userst);
+                printf("Login successful! Welcome, %s!\nPress ENTER to continue.", userst);
                 break; // Continue to menu system if credentials are correct
             }
             else
