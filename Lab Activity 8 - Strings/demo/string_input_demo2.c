@@ -23,7 +23,12 @@ int main()
     // stdin is terminal
     course[strlen(course) - 1] = '\0';
     printf("Your course is %s!!!", course);
+
+    puts(name);     
+      puts(name);      // appends new line to the string at the end
+    fputs(name, stdout); // no new line
+    fputs(name, stdout);
     return 0;
 
-    scanf("%s", &name); //when you use this, it stops at the first blank space
+    scanf("%s", &name); // when you use this, it stops at the first blank space
 }
