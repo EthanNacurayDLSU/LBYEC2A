@@ -68,7 +68,7 @@ void prog_table(int planlen, float weekprog[6][16], int exdiechoice, int dexmcho
 
     for (int i = 1; i <= planlen; i++)
     {
-        printf("|  Week %d  |", i);
+        printf("|  Week %2d |", i);
     }
 
     printf("\n|    Weekly Progress   |");
@@ -141,4 +141,3 @@ void difference(int planlen, float weekprog[6][16])
         weekprog[2][i] = ((weekprog[0][i]) - (weekprog[1][i]));
     }
 }
-
